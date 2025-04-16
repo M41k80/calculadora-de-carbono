@@ -1,0 +1,42 @@
+# Entornos virtuales (venv, .venv, Pipenv, etc.)
+venv/
+.venv/
+env/
+ENV/
+venv
+
+# Archivos de Python generados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configuraciones y caché de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de entorno (variables sensibles)
+.env
+.env.local
+.env*.local
+
+# Logs y bases de datos locales
+*.log
+*.sqlite
+*.db
+
+# Directorios de instalación y paquetes
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Archivos de pruebas y cobertura
+.coverage
+htmlcov/
+.pytest_cache/
+
+# FastAPI específico (opcional)
+# Si usas SQLModel o bases de datos temporales
+*.db-journal
