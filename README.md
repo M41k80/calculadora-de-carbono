@@ -8,6 +8,7 @@ El propósito de este proyecto es ayudar a las empresas a medir, visualizar y re
 - **Recomendaciones personalizadas** para reducir las emisiones y promover prácticas más sostenibles.
 
 ## 🔧 **Tecnologías Utilizadas**
+- **Dataset**: Dataset de emisiones de c02 Climatiq.io
 - **Backend**: FastAPI
 - **Frontend**: React.js (por definir si se incluirá)
 - **Modelos de IA**: Scikit-learn / TensorFlow (para predicciones de emisiones)
