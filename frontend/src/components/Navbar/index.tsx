@@ -8,7 +8,7 @@ const Navbar = () => {
       <nav className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-gray-800">
-          MiLogo
+          MiEmpresa
         </Link>
 
         {/* Botones de Autenticacion */}
@@ -17,13 +17,13 @@ const Navbar = () => {
             href="/login"
             className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition"
           >
-            Login
+            Iniciar Sesión
           </Link>
           <Link
             href="/register"
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
           >
-            Register
+            Registrarse
           </Link>
         </div>
       </nav>

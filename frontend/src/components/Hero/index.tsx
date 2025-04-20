@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Hero = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 via-white to-green-50 flex flex-col items-center justify-center px-4">
@@ -10,18 +12,19 @@ const Hero = () => {
           predicciones inteligentes y recomendaciones personalizadas.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#"
+          <Link
+            href="/register"
             className="px-6 py-3 bg-green-600 text-white rounded-2xl shadow hover:bg-green-700 transition"
           >
             Comenzar gratis
-          </a>
-          <a
-            href="#"
+          </Link>
+
+          <Link
+            href="/login"
             className="px-6 py-3 border border-green-600 text-green-600 rounded-2xl shadow hover:bg-green-50 transition"
           >
             Ya tengo una cuenta
-          </a>
+          </Link>
         </div>
       </div>
     </div>
