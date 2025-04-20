@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { getEmissionsPrediction } from "@/app/utils/api/predictions"
+import { getEmissionsPrediction } from "@/api/prediccion/predictions"
+
 
 export default function PredictionPage() {
     const [data, setData] = useState({
