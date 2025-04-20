@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -7,8 +8,15 @@ const Navbar = () => {
     <header className="w-full px-6 py-4 bg-white shadow-md">
       <nav className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
+
         <Link href="/" className="text-2xl font-bold text-gray-800">
-          MiEmpresa
+          <Image
+            src="/next.svg"
+            alt="MiEmpresa Logo"
+            width={32}
+            height={32}
+            className="h-6 w-auto"
+          />
         </Link>
 
         {/* Botones de Autenticacion */}
