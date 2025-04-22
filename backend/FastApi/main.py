@@ -9,6 +9,10 @@ from typing import Callable
 import asyncio
 from fastapi.middleware.cors import CORSMiddleware
 import io
+from fastapi import Query
+from datetime import datetime
+from typing import List
+import calendar
 
 # Cargar variables de entorno
 load_dotenv()
@@ -66,11 +70,31 @@ def calcular_emisiones(data: InputData):
     }
 
 def predecir_emisiones(data: InputData):
+    # Calcular las emisiones
     emisiones = calcular_emisiones(data)
-    entrada_df = pd.DataFrame([{
-        **data.dict(),
-        **{f"{k}_emisiones": v for k, v in emisiones.items()}
-    }])
+
+    # Crear un diccionario con los datos de entrada y las emisiones
+    input_data_dict = {**data.dict(), **{f"{k}_emisiones": v for k, v in emisiones.items()}}
+
+    # Crear un DataFrame con las columnas que el modelo espera
+    # Asegúrate de que las columnas coincidan exactamente con las que el modelo usa
+    entrada_df = pd.DataFrame([input_data_dict])
+
+    # Verifica que las columnas esperadas estén presentes
+    columnas_faltantes = [
+        col for col in modelo_regresion.feature_names_in_ if col not in entrada_df.columns
+    ]
+    if columnas_faltantes:
+        raise ValueError(f"Faltan las columnas: {', '.join(columnas_faltantes)}")
+
+    # Realizar la predicción con las características del modelo
+    return float(modelo_regresion.predict(entrada_df[modelo_regresion.feature_names_in_])[0])
+
+
+    # Crear el DataFrame con las columnas renombradas
+    entrada_df = pd.DataFrame([input_data_dict_renamed])
+
+    # Realizar la predicción con las características esperadas por el modelo
     return float(modelo_regresion.predict(entrada_df[modelo_regresion.feature_names_in_])[0])
 
 def clasificar_emisiones(data: InputData):
@@ -130,6 +154,20 @@ def generar_prompt_anual(promedios: dict, detalles_mensuales: list, total_anual:
     Ejemplo: 
     "1. Instalar paneles solares (15,000 kWh/año) → Ahorro estimado: 3,500 kg CO2/año • Rentabilidad alta • Plazo medio"
     """
+
+
+def generar_prompt_futuro(promedios, n_meses, predicciones):
+    return (
+        f"Soy un asistente experto en sostenibilidad ambiental. A continuación se muestran los valores promedio "
+        f"de consumo de una empresa (en los últimos meses):\n"
+        f"- Electricidad: {promedios['electricidad_uso']:.2f} kWh\n"
+        f"- Auto: {promedios['auto_uso']:.2f} km\n"
+        f"- Avión: {int(round(promedios['avion_uso']))} vuelos\n"
+        f"- Residuos: {promedios['residuos_uso']:.2f} kg\n"
+        f"- Agua: {promedios['agua_uso']:.2f} m³\n\n"
+        f"Se han estimado las emisiones para los próximos {n_meses} meses. "
+        f"En base a esto, sugiere recomendaciones específicas para reducir las emisiones futuras y ser más sostenible."
+    )
 
 # --- Endpoints ---
 @app.post("/predict/emisiones/")
@@ -252,6 +290,123 @@ def generar_respuesta(prompt: str) -> str:
 def health_check():
     return {"status": "ok"}
 
+
+
+
+
+class HistorialMensual(BaseModel):
+    mes: str
+    anio: int
+    electricidad_uso: float
+    auto_uso: float
+    avion_uso: int
+    residuos_uso: float
+    agua_uso: float
+    
+    
+
+meses_espanol = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                        'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+
+def generar_meses_prediccion(n_meses: int) -> List[dict]:
+    fecha_actual = datetime.now()
+    meses = []
+    
+    for i in range(1, n_meses + 1):
+        fecha_pred = fecha_actual + pd.DateOffset(months=i)
+        mes_numero = fecha_pred.month
+        mes_espanol = meses_espanol[mes_numero - 1]
+        meses.append({
+            "mes": mes_espanol,
+            "anio": fecha_pred.year
+        })
+    
+    return meses
+
+@app.post("/predict/future/")
+async def predict_future(
+    historial: List[HistorialMensual], 
+    meses_a_predecir: int, 
+    _: Callable = Depends(cargar_modelos)
+):
+    try:
+        # 1. Validación básica
+        if meses_a_predecir <= 0:
+            raise HTTPException(400, "El número de meses a predecir debe ser positivo")
+        
+        if len(historial) < 3:
+            raise HTTPException(400, "Se requieren al menos 3 meses de historial")
+
+        # 2. Procesamiento de datos
+        df = pd.DataFrame([h.dict() for h in historial])
+        
+        # Mapeo de meses a números
+       
+        df['mes_numero'] = df['mes'].str.lower().map(lambda x: meses_espanol.index(x) + 1)
+        
+        # 3. Ordenamiento temporal
+        df['fecha'] = pd.to_datetime(df['anio'].astype(str) + '-' + df['mes_numero'].astype(str), format='%Y-%m')
+        df = df.sort_values('fecha')
+        
+        # 4. Predicción por mes
+        resultados = []
+        meses_prediccion = generar_meses_prediccion(meses_a_predecir)
+        
+        for mes_pred in meses_prediccion:
+            # Usar promedio de últimos 3 meses
+            df_reciente = df.tail(3)
+            promedios = {
+                'electricidad_uso': df_reciente['electricidad_uso'].mean(),
+                'auto_uso': df_reciente['auto_uso'].mean(),
+                'avion_uso': round(df_reciente['avion_uso'].mean()),
+                'residuos_uso': df_reciente['residuos_uso'].mean(),
+                'agua_uso': df_reciente['agua_uso'].mean()
+            }
+            
+            # Validación de promedios
+            if any(pd.isna(val) for val in promedios.values()):
+                raise HTTPException(400, "No se pudieron calcular promedios para los últimos 3 meses")
+            
+            # Predicción
+            data = InputData(**promedios)
+            emisiones = predecir_emisiones(data)
+            
+            resultados.append({
+                "mes": mes_pred['mes'],
+                "anio": mes_pred['anio'],
+                **promedios,
+                "emisiones_estimadas": emisiones,
+                "clasificacion": clasificar_emisiones(data)
+            })
+        
+        # 5. Generación de consejos
+        prompt = f"""
+        Basado en {len(historial)} meses históricos y {meses_a_predecir} meses proyectados:
+        
+        Consumo promedio proyectado:
+        - Electricidad: {sum(r['electricidad_uso'] for r in resultados)/meses_a_predecir:.1f} kWh/mes
+        - Transporte: {sum(r['auto_uso'] for r in resultados)/meses_a_predecir:.1f} km/mes
+        - Vuelos: {sum(r['avion_uso'] for r in resultados)/meses_a_predecir:.1f}/mes
+        
+        Genera 3 recomendaciones específicas con:
+        - Acción concreta
+        - % reducción esperada
+        - Dificultad de implementación
+        """
+        
+        return {
+            "predicciones": resultados,
+            "consejos": generar_respuesta(prompt)
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(500, f"Error interno: {str(e)}")
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    
+    
+    
