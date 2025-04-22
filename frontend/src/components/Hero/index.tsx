@@ -1,8 +1,31 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
+import LoginModal from "@/components/modals/LoginModal";
+import RegisterModal from "@/components/modals/RegisterModal";
 
 const Hero = () => {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleOpenLogin = () => {
+    setShowRegister(false);
+    setShowLogin(true);
+  };
+
+  const handleOpenRegister = () => {
+    setShowLogin(false);
+    setShowRegister(true);
+  };
+
+  const handleCloseModals = () => {
+    setShowLogin(false);
+    setShowRegister(false);
+  };
+
   return (
     <div className="relative min-h-screen bg-[#0A0B0C] text-white flex flex-col items-center justify-center px-4">
       {/* Fondo Glow */}
@@ -10,9 +33,9 @@ const Hero = () => {
         <div className="w-[220px] h-[230px] md:w-[350px] md:h-[370px] rounded-full bg-amber-600 opacity-70 md:blur-[70px] blur-[50px] mt-8" />
       </div>
 
+      {/* Header Navigation */}
       <header className="absolute top-6 left-0 right-0 z-20 px-6 pointer-events-auto">
         <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 bg-transparent">
-          {/* Logo */}
           <div className="flex justify-center sm:justify-start z-20">
             <Image
               src="/Logo.png"
@@ -23,7 +46,6 @@ const Hero = () => {
             />
           </div>
 
-          {/* Términos */}
           <div className="text-center sm:text-left z-20">
             <Link
               href="/terms"
@@ -33,7 +55,6 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Contacto */}
           <div className="text-center sm:text-right z-20">
             <Link
               href="/contact"
@@ -57,13 +78,27 @@ const Hero = () => {
           de tu empresa y convertir datos en decisiones.
         </p>
 
-        <Link
-          href="/register"
-          className="inline-flex font-inter items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-normal px-4 py-3 rounded-2xl transition shadow-lg"
+        <button
+          onClick={handleOpenLogin}
+          className="inline-flex font-inter items-center gap-2 bg-[#EA5105] hover:bg-orange-700 text-white font-normal px-4 py-3 rounded-2xl transition shadow-lg cursor-pointer"
         >
           Comencemos <ChevronRight className="w-9 h-5" />
-        </Link>
+        </button>
       </div>
+
+      {/* Modal de Login */}
+      <LoginModal
+        isOpen={showLogin}
+        onClose={handleCloseModals}
+        onOpenRegister={handleOpenRegister}
+      />
+
+      {/* Modal de Registro */}
+      <RegisterModal
+        isOpen={showRegister}
+        onClose={handleCloseModals}
+        onBackToLogin={handleOpenLogin}
+      />
     </div>
   );
 };
