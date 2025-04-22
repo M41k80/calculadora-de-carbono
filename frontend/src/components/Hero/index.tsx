@@ -1,31 +1,68 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 via-white to-green-50 flex flex-col items-center justify-center px-4">
-      <div className="max-w-3xl text-center">
-        <h1 className="text-5xl font-bold text-gray-800 mb-6">
-          Calculadora de Huella de Carbono para Empresas
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          Mide, visualiza y reduce el impacto ambiental de tu empresa con
-          predicciones inteligentes y recomendaciones personalizadas.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/register"
-            className="px-6 py-3 bg-green-600 text-white rounded-2xl shadow hover:bg-green-700 transition"
-          >
-            Comenzar gratis
-          </Link>
+    <div className="relative min-h-screen bg-[#0A0B0C] text-white flex flex-col items-center justify-center px-4">
+      {/* Fondo Glow */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0">
+        <div className="w-[220px] h-[230px] md:w-[350px] md:h-[370px] rounded-full bg-amber-600 opacity-70 md:blur-[70px] blur-[50px] mt-8" />
+      </div>
 
-          <Link
-            href="/login"
-            className="px-6 py-3 border border-green-600 text-green-600 rounded-2xl shadow hover:bg-green-50 transition"
-          >
-            Ya tengo una cuenta
-          </Link>
+      <header className="absolute top-6 left-0 right-0 z-20 px-6 pointer-events-auto">
+        <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 bg-transparent">
+          {/* Logo */}
+          <div className="flex justify-center sm:justify-start z-20">
+            <Image
+              src="/Logo.png"
+              alt="Logo"
+              width={160}
+              height={160}
+              style={{ height: "auto" }}
+            />
+          </div>
+
+          {/* Términos */}
+          <div className="text-center sm:text-left z-20">
+            <Link
+              href="/terms"
+              className="hover:underline text-lg font-medium text-[#E9E9E9]"
+            >
+              Términos
+            </Link>
+          </div>
+
+          {/* Contacto */}
+          <div className="text-center sm:text-right z-20">
+            <Link
+              href="/contact"
+              className="border-2 border-[#838383] text-[#E9E9E9] px-8 py-1 rounded-lg text-lg hover:bg-white hover:text-black transition"
+            >
+              Contacto
+            </Link>
+          </div>
         </div>
+      </header>
+
+      {/* Contenido Principal */}
+      <div className="z-10 max-w-4xl text-center">
+        <h1 className="text-4xl md:text-7xl font-bold mb-6 mt-32 text-[#DDDDDD]">
+          Calculá tu huella <br />
+          <span className="text-[#DDDDDD]">y transformá tu impacto</span>
+        </h1>
+        <p className="text-base md:text-lg text-[#B5B5B5] mb-20 mt-6 font-normal">
+          Descubrí una forma simple y precisa de conocer el impacto ambiental{" "}
+          <br className="hidden md:block" />
+          de tu empresa y convertir datos en decisiones.
+        </p>
+
+        <Link
+          href="/register"
+          className="inline-flex font-inter items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-normal px-4 py-3 rounded-2xl transition shadow-lg"
+        >
+          Comencemos <ChevronRight className="w-9 h-5" />
+        </Link>
       </div>
     </div>
   );
