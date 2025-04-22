@@ -1,20 +1,35 @@
 "use client";
 
 const Sidebar = () => {
-
-    return (
-        <aside className="mt-6 mb-6 w-40 h-screen bg-[#212226] text-white flex flex-col p-4 rounded-full shadow-lg">
-        <div className="flex items-center justify-center mb-4">
-            <img alt="" className="w-24 h-24 rounded-full" />
+  return (
+    <aside className="mt-6 mb-6 w-20 md:w-20 sm:w-40 h-screen bg-[#212226] text-white flex flex-col p-4 rounded-full shadow-lg">
+      <div className="flex items-center justify-center mb-4">
+        <img className="w-20 h-20 rounded-full" />
+      </div>
+      <nav className="flex flex-col justify-between flex-1">
+        {/* Top icons */}
+        <div className="flex flex-col gap-6 mt-4">
+          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
+            <img src="dashboard-icon2.svg"></img>
+          </a>
+          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
+            <img src="loadData-icon.svg"></img>
+          </a>
+          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
+            <img src="history.svg"></img>
+          </a>
+          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
+            <img src="history2.svg"></img>
+          </a>
         </div>
-        <nav className="flex flex-col gap-2 mt-4">
-            <a href="#" className="hover:bg-gray-700 p-2 rounded">Link 1</a>
-            <a href="#" className="hover:bg-gray-700 p-2 rounded">Link 2</a>
-            <a href="#" className="hover:bg-gray-700 p-2 rounded">Link 3</a>
-        </nav>
-        </aside>
-    );
- }
 
+        {/* Bottom logout icon */}
+        <a href="#" className="hover:bg-white p-2 rounded-full">
+          <img src="logout.svg"></img>
+        </a>
+      </nav>
+    </aside>
+  );
+};
 
 export default Sidebar;

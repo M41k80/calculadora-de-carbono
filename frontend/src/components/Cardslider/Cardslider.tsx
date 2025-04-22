@@ -14,42 +14,63 @@ const Cardslider = () => {
           spaceBetween={20}
           slidesPerView={5}
           pagination={{ clickable: true }}
+          loop={true}
           navigation={true}
-          className="w-64 h-64"
+          className="w-75"
         >
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              1
+              Enero
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              2
+              Febrero
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              3
+              Marzo
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              4
+              Abril
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              5
+              Mayo
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              6
+              Junio
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              7
+              Julio
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+              Agosto
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+              Septiembre
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+              Octubre
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+              Noviembre
             </div>
           </SwiperSlide>
         </Swiper>
