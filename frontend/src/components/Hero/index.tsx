@@ -47,7 +47,7 @@ const Hero = () => {
 
       {/* Contenido Principal */}
       <div className="z-10 max-w-4xl text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 mt-32 text-[#DDDDDD]">
+        <h1 className="text-4xl md:text-7xl font-bold mb-6 mt-32 text-[#DDDDDD]">
           Calculá tu huella <br />
           <span className="text-[#DDDDDD]">y transformá tu impacto</span>
         </h1>
