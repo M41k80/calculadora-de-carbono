@@ -51,7 +51,7 @@ export default function AiSuggestionsChat() {
     }
 
     return (
-        <div className="mt-6 mb-6 flex flex-col h-[70vh] md:h-[60vh] lg:h-[115vh] bg-[#212226] rounded-lg overflow-hidden">
+        <div className="mt-4 mb-6 w-full flex flex-col h-[70vh] md:h-[60vh] lg:h-[105vh] bg-[#212226] rounded-lg overflow-hidden">
 
 
             <div className="flex items-center justify-between p-4 border-b border-gray-800">
