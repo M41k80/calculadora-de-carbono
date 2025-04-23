@@ -2,6 +2,7 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Cardslider from "@/components/Cardslider/Cardslider";
+import ScrollContainer from "@/components/Scrollcontainer";
 
 const Dashboard = () => {
   return (
@@ -19,7 +20,9 @@ const Dashboard = () => {
           <div className="bg-[#4C4C4C] h-8 rounded-full w-50"></div>
         </div>
         <div>Info</div>
-        <div className="bg-[#212226] p-4 rounded-lg shadow-md flex font-bold gap-6 p-6 h-50"></div>
+        
+        <ScrollContainer />
+        
         </div>
         <div className="bg-[#212226] w-75 mt-6 mb-6 p-4 rounded-lg shadow-md flex font-bold gap-6 p-6">
           <div className="flex flex-col gap-4 justify-between">

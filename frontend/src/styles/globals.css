@@ -24,13 +24,10 @@ body {
   font-family: Outfit, sans-serif;
 }
 
-/* Adjust Swiper navigation button positions */
-.swiper-button-next,
-.swiper-button-prev {
-  color: white; /* Optional: Change arrow color */
-  transform: translateX(20px); /* Move next button further right */
+/* Target navigation buttons for the custom Swiper */
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  color: white;
+  
 }
 
-.swiper-button-prev {
-  transform: translateX(-20px); /* Move prev button further left */
-}

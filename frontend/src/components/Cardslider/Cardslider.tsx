@@ -13,10 +13,9 @@ const Cardslider = () => {
           modules={[Pagination, Navigation]}
           spaceBetween={20}
           slidesPerView={5}
-          pagination={{ clickable: true }}
           loop={true}
           navigation={true}
-          className="w-75"
+          className="w-200 custom-swiper"
         >
           <SwiperSlide>
             <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
