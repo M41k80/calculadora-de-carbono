@@ -403,6 +403,36 @@ async def predict_future(
         raise
     except Exception as e:
         raise HTTPException(500, f"Error interno: {str(e)}")
+    
+    
+    
+class ChatRequest(BaseModel):
+    question: str
+
+@app.post("/chat-carbono")
+async def chat_carbono(request: ChatRequest):
+    pregunta = request.question.strip()
+
+    # Verificar si la pregunta tiene que ver con huella de carbono
+    palabras_clave = [
+        "huella de carbono", "emisiones", "CO2", "carbono", "sostenibilidad", 
+        "impacto ambiental", "reducción", "contaminación", "sustentabilidad"
+    ]
+    if not any(p in pregunta.lower() for p in palabras_clave):
+        raise HTTPException(status_code=400, detail="Solo se permiten preguntas relacionadas con huella de carbono de empresas.")
+
+    try:
+        response = client.chat.completions.create(
+            model="mistral",  # o el que estés usando en OpenRouter
+            messages=[
+                {"role": "system", "content": "Eres un experto en sostenibilidad y huella de carbono empresarial. Solo responde sobre ese tema."},
+                {"role": "user", "content": pregunta}
+            ]
+        )
+        return {"respuesta": response.choices[0].message.content}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al generar respuesta: {str(e)}")
+
 
 if __name__ == "__main__":
     import uvicorn
