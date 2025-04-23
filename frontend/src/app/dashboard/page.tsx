@@ -2,7 +2,7 @@
 import React from "react";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
-import Cardslider from "@/components/Cardslider/Cardslider";
+import Cardslider from "@/components/Cardslider";
 import ScrollContainer from "@/components/Scrollcontainer";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
 
@@ -12,8 +12,8 @@ const Dashboard = () => {
       <Sidebar />
       <div className="w-full px-6 sm:px-10 pt-6 relative">
         <h1 className="text-xl font-bold text-white">Buenos dias Karim</h1>
-        <div className="flex flex-row w-full gap-10 mt-4 justify-between items-center">
-          <div className="bg-[#212226] rounded-lg shadow-md font-bold p-6">
+        <div className="flex flex-row w-full mt-4 justify-between items-center">
+          <div className="bg-[#212226] rounded-lg shadow-md font-bold px-6 py-3">
             <h1 className="text-center">Carbono Emitido</h1>
             <div className="flex flex-row gap-10 justify-center items-center">
               <h1 className="text-4xl">-2,8%</h1>
@@ -23,7 +23,7 @@ const Dashboard = () => {
               ></img>
             </div>
           </div>
-          <div className="bg-[#212226] rounded-lg shadow-md font-bold p-6">
+          <div className="bg-[#212226] rounded-lg shadow-md font-bold px-6 py-3">
             <h1 className="text-center">Transporte</h1>
             <div className="flex flex-row gap-10 justify-center items-center">
               <h1 className="text-4xl">+5,3%</h1>
@@ -33,7 +33,7 @@ const Dashboard = () => {
               ></img>
             </div>
           </div>
-          <div className="bg-[#212226] rounded-lg shadow-md font-bold p-6">
+          <div className="bg-[#212226] rounded-lg shadow-md font-bold px-6 py-3">
             <h1 className="text-center">Electricidad</h1>
             <div className="flex flex-row gap-10 justify-center items-center">
               <h1 className="text-4xl">+3,7%</h1>
