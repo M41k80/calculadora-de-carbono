@@ -12,7 +12,7 @@ import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
 
 const ScrollContainer = () => {
   return (
-    <div className="bg-[#212226] p-4 rounded-lg font-bold h-80 w-200 overflow-hidden">
+    <div className="bg-[#212226] p-4 rounded-lg font-bold h-80 w-full px-6 sm:px-10 overflow-hidden">
       <Swiper
         direction={"vertical"}
         slidesPerView={"auto"}

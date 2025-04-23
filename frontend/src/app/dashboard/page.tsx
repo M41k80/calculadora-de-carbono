@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import Sidebar from "@/components/Sidebar";
+import Image from "next/image";
 import Cardslider from "@/components/Cardslider/Cardslider";
 import ScrollContainer from "@/components/Scrollcontainer";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
@@ -9,10 +10,9 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-black flex px-4">
       <Sidebar />
-      <div className="m-10">
+      <div className="w-full px-6 sm:px-10 pt-6 relative">
         <h1 className="text-xl font-bold text-white">Buenos dias Karim</h1>
-
-        <div className="flex flex-row gap-10 mt-4 w-200">
+        <div className="flex flex-row w-full gap-10 mt-4 justify-between items-center">
           <div className="bg-[#212226] rounded-lg shadow-md font-bold p-6">
             <h1 className="text-center">Carbono Emitido</h1>
             <div className="flex flex-row gap-10 justify-center items-center">
@@ -53,8 +53,7 @@ const Dashboard = () => {
             Generar Ahora
           </div>
         </div>
-        <div>Info</div>
-
+        <div className="font-bold my-4 mb-6">Resultado de la prediccion:</div>
         <ScrollContainer />
       </div>
       <div className="w-100">
