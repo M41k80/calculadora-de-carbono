@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/react": "^1.2.9",
+    "ai": "^4.3.9",
     "axios": "^1.8.4",
     "lucide-react": "^0.503.0",
     "next": "^15.3.1",
     "react": "^19.1.0",
     "react-day-picker": "^9.6.7",
     "react-dom": "^19.1.0",
-    "swiper": "^11.2.6"
+    "swiper": "^11.2.6",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

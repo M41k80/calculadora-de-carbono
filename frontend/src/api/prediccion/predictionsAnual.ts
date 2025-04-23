@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // TODO URL del backend
-// const API_URL = "https://calculadora-carbono-7ero.onrender.com";
+const API_URL = "https://calculadora-carbono-7ero.onrender.com";
 
-const API_URL = "http://localhost:8000";
+// const API_URL = "http://localhost:8000";
 
 // Interfaces para la respuesta de predicción anual
 export interface PromediosMensuales {
