@@ -1,7 +1,9 @@
-package migrate
+package main
 
 import (
 	"database/sql"
+	"flag"
+	"fmt"
 	"log"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -11,7 +13,6 @@ import (
 )
 
 func Migrate(dns string) error {
-
 
 	db, err := sql.Open("mysql", dns)
 	if err != nil {
@@ -42,4 +43,16 @@ func Migrate(dns string) error {
 	}
 
 	return nil
+}
+
+func main() {
+	
+	dsn := flag.String("dsn", "root:admin@tcp(localhost:3306)/carbono", "MySQL Database DSN ")
+	flag.Parse()
+	
+	err := Migrate(*dsn)
+	if err != nil {
+		log.Fatalf("Error al ejecutar migraciones: %v", err)
+	}
+	fmt.Println("Migraciones ejecutadas correctamente.")
 }
