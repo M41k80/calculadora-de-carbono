@@ -10,22 +10,22 @@ const Sidebar = () => {
         {/* Top icons */}
         <div className="flex flex-col gap-6 mt-4">
           <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="dashboard-icon2.svg"></img>
+            <img src="/dashboard-icon2.svg"></img>
           </a>
           <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="loadData-icon.svg"></img>
+            <img src="/loadData-icon.svg"></img>
           </a>
           <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="history.svg"></img>
+            <img src="/history.svg"></img>
           </a>
           <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="history2.svg"></img>
+            <img src="/history2.svg"></img>
           </a>
         </div>
 
         {/* Bottom logout icon */}
         <a href="#" className="hover:bg-white p-2 rounded-full">
-          <img src="logout.svg"></img>
+          <img src="/logout.svg"></img>
         </a>
       </nav>
     </aside>
