@@ -1,18 +1,38 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Image from "next/image";
+import SuccessModal from "@/components/modals/SuccessModal";
 
 const CargaData = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = () => {
     setIsLoading(true);
-    // Simular proceso de carga (3 segundos)
+    setShowSuccess(false);
+
     setTimeout(() => {
       setIsLoading(false);
-      // Aquí podrías redirigir, mostrar alerta, etc.
+      setShowSuccess(true);
     }, 3000);
+  };
+
+  const handleReset = () => {
+    setShowSuccess(false);
+  };
+
+  const handleFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log("Archivo seleccionado:", file.name);
+      // Aquí podrías validar, mostrar nombre, o enviar a backend
+    }
   };
 
   return (
@@ -37,10 +57,11 @@ const CargaData = () => {
               Cargando y analizando datos
             </p>
             <div className="animate-spin rounded-full h-40 w-40 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
-
-
           </div>
+        ) : showSuccess ? (
+          <SuccessModal onClose={handleReset} />
         ) : (
+          // Formulario de carga de datos
           <div className="flex flex-col justify-start items-start w-full max-w-2xl mx-auto text-white">
             <h1 className="text-3xl sm:text-4xl font-bold mb-2">
               Carga de datos
@@ -61,12 +82,25 @@ const CargaData = () => {
               <p className="text-sm sm:text-base text-white font-light text-center px-4">
                 Arrastrá y soltá el archivo aquí o
               </p>
-              <button className="bg-[#202226] hover:bg-[#2a2a2a] text-white px-6 py-2 rounded-md text-sm transition cursor-pointer">
-                Seleccionar archivo
-              </button>
+
+              <>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  className="hidden"
+                  accept=".csv,.scsv,.txt,.xls,.xlsx"
+                />
+                <button
+                  onClick={handleFileClick}
+                  className="bg-[#202226] hover:bg-[#2a2a2a] text-white px-6 py-2 rounded-md text-sm transition cursor-pointer"
+                >
+                  Seleccionar archivo
+                </button>
+              </>
             </div>
 
-            {/* Info adicional */}
+            {/* Informacion adicional */}
             <p className="text-sm sm:text-base text-[#B1B1B1] mt-4 leading-relaxed font-light">
               Archivos admitidos: .SCSV (Transporte, electricidad, gas, agua,
               vuelos y todos los necesarios para el cálculo)
