@@ -57,9 +57,9 @@ const Dashboard = () => {
 
         <ScrollContainer />
       </div>
-          <div className="w-100">
-            <AiSuggestionsChat />
-          </div>
+      <div className="w-100">
+        <AiSuggestionsChat />
+      </div>
     </div>
   );
 };
