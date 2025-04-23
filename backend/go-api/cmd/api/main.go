@@ -1,11 +1,10 @@
 package main
 
 import (
-	"calculadora-service/cmd/migrate"
+	_ "github.com/go-sql-driver/mysql"
 	"calculadora-service/internal/database"
 	"database/sql"
 	"flag"
-	"fmt"
 	"log"
 )
 
@@ -22,13 +21,6 @@ func main() {
 	jwt  := flag.String("jwt", "no-tan-secreto", "JWT secret")
 
 	flag.Parse()
-
-	// for migrations
-	err := migrate.Migrate(*dsn)
-	if err != nil {
-		log.Fatalf("Error al ejecutar migraciones: %v", err)
-	}
-	fmt.Println("Migraciones ejecutadas correctamente.")
 
 	// Start database
 	db, err := openDB(*dsn)

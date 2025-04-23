@@ -1,6 +1,8 @@
 import axios from "axios";
 
 
+const API_URL = "https://calculadora-carbono-7ero.onrender.com"
+
 export interface ConsumoMensual {
     mes: string;
     anio: number;
@@ -22,7 +24,7 @@ export const obtenerPrediccionFutura = async (
 ) => {
     try {
         const response = await axios.post(
-            `http://localhost:8000/predict/future/`,
+            `${API_URL}/predict/future/`,
             historial,
             {
                 params: { meses },

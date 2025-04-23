@@ -15,30 +15,42 @@
 
 ```bash
 git clone https://github.com/tu-usuario/tu-proyecto.git
-cd calculadora-de-carbono/backend/go-api
-
 ```
+```bash
+cd calculadora-de-carbono/backend/go-api
+```
+
 ### 📦 Instala dependencias
 ```bash
 go mod tidy
 ```
 
+### 📦 Iniciar las migraciones  
+```bash
+ go run ./cmd/migrate/migration.go 
+```
+
 ### 📦 Compilar 
 ```bash
-go build ./cmd/api
+go build -o carbono-service ./cmd/api/
 ```
 
 ### For run 
 
 ```go
-./api dsn="root:admin@tcp(localhost:3306)/db-name"
+./carbono-service -dsn="root:admin@tcp(localhost:3306)/db-name"
 
 ```
 
-### For deploy  
+## For deploy  
+
+### 📦 Iniciar las migraciones  
+```bash
+ go run ./cmd/migrate/migration.go -dsn="root:admin@tcp(localhost:3306)/db-name"
+```
 
 ```go
-go run main.go -dsn="root:admin@tcp(localhost:3306)/carbono?charset=utf8mb4&parseTime=True" -addr="4000" -jwt="mi-super-secreto"
+./carbono-service -dsn="root:admin@tcp(localhost:3306)/carbono?charset=utf8mb4&parseTime=True" -addr="4000" -jwt="mi-super-secreto"
 ```
 
 

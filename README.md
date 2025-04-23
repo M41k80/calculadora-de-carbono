@@ -66,3 +66,15 @@ curl -X 'POST' \
 }
 
 
+## https://calculadora-carbono-7ero.onrender.com/predict/from-csv-mensual/
+
+# para cargar un csv con el formato de ejemplo
+
+
+## https://calculadora-carbono-7ero.onrender.com/predict/future/
+
+# para predicciones futuras
+
+
+## https://calculadora-carbono-7ero.onrender.com/chat-carbono 
+# para el chat

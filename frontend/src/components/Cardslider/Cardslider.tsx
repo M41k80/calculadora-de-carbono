@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper/modules";
 const Cardslider = () => {
   return (
     <div>
-      <div className="mt-6">
+      <div className="mt-3 mb-3">
         <Swiper
           modules={[Pagination, Navigation]}
           spaceBetween={20}

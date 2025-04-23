@@ -4,28 +4,36 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/cors"
 
 )
 
 func (app *application) routes() http.Handler {
 	g := gin.Default()
 
+	g.Use(cors.New(cors.Config{
+		AllowAllOrigins: true,
+		AllowMethods:    []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders:    []string{"Origin", "Content-Type", "Authorization"},
+	}))
+	
 	// public routes 
 	v1 := g.Group("/api/v1")
 	{
-		v1.GET("/hello", app.home)
+		v1.GET("/", app.home)
 		v1.POST("/auth/register", app.registerUser)
 		v1.POST("/auth/login", app.loginUser)
 
 	}
 
-	// protected 
- 	authGroup := v1.Group("/")
+	// Grupo de rutas protegidas
+	authGroup := v1.Group("/")
 	authGroup.Use(app.AuthMiddleware())
 	{
-		authGroup.POST("/create", app.create)
+		authGroup.POST("/carbon/upload", app.UploadCSV)
+		authGroup.GET("/carbon/history", app.GetHistory)
+		authGroup.POST("/carbon/predict", app.Predict)
 	}
-
 
 	return g
 }
