@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const Sidebar = () => {
   return (
@@ -9,18 +10,33 @@ const Sidebar = () => {
       <nav className="flex flex-col justify-between flex-1">
         {/* Top icons */}
         <div className="flex flex-col gap-6 mt-4">
-          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="/dashboard-icon2.svg"></img>
-          </a>
-          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="/loadData-icon.svg"></img>
-          </a>
-          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="/history.svg"></img>
-          </a>
-          <a href="#" className="hover:bg-[#EA5105] p-2 rounded-full">
-            <img src="/history2.svg"></img>
-          </a>
+          <Link
+            href="/dashboard"
+            className="hover:bg-[#EA5105] p-2 rounded-full"
+          >
+            <img src="/dashboard-icon2.svg" alt="Dashboard" />
+          </Link>
+
+          <Link
+            href="/dashboard/cargadata"
+            className="hover:bg-[#EA5105] p-2 rounded-full"
+          >
+            <img src="/loadData-icon.svg" alt="Cargar datos" />
+          </Link>
+
+          <Link
+            href="/dashboard/calendar"
+            className="hover:bg-[#EA5105] p-2 rounded-full"
+          >
+            <img src="/history.svg" alt="Historial" />
+          </Link>
+
+          <Link
+            href="/dashboard/historial"
+            className="hover:bg-[#EA5105] p-2 rounded-full"
+          >
+            <img src="/history2.svg" alt="Historial alternativo" />
+          </Link>
         </div>
 
         {/* Bottom logout icon */}
