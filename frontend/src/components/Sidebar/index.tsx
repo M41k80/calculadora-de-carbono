@@ -37,6 +37,14 @@ const Sidebar = () => {
           >
             <img src="/history2.svg" alt="Historial alternativo" />
           </Link>
+
+          <Link
+            href="/dashboard/profile"
+            className="hover:bg-[#EA5105] p-1.5 rounded-full text-white cursor-pointer transform transition-transform duration-300 hover:scale-105"
+          >
+            <img src="/user.png" alt="Historial alternativo" />
+          </Link>
+
         </div>
 
         {/* Bottom logout icon */}
