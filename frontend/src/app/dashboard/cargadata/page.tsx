@@ -36,7 +36,7 @@ const CargaData = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0C0D] flex">
+    <div className="min-h-screen bg-[#0B0C0D] flex px-4">
       <Sidebar />
       <div className="flex flex-col w-full px-6 sm:px-10 pt-6 relative">
         {/* Imagen de perfil */}
