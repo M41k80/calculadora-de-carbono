@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState } from 'react';
 import { getAnnualPrediction, PredictionAnualResponse } from '@/api/prediccion/predictionsAnual';
 
@@ -26,8 +26,41 @@ const UploadCSV = () => {
             setLoading(true);
             const data = await getAnnualPrediction(formData);
             setResultados(data);
+
+            
+            const email = localStorage.getItem("email");
+            console.log('UserId:', email);
+            const token = localStorage.getItem("token");
+            console.log('Token enviado:', token);
+
+
+
+            const response = await fetch("http://localhost:3000/historial/save", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email, 
+                    detalle_mensual: data.detalle_mensual,
+                    resumen_anual: data.resumen_anual,
+                }),
+            });
+
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    setError('Token de autenticación inválido o expirado');
+                } else {
+                    setError('Error al guardar el historial');
+                }
+                throw new Error('Error al guardar el historial');
+            }
+
+
+            alert('Predicción guardada correctamente');
         } catch (error: unknown) {
-            setError(`Hubo un error al cargar el archivo. ${error}`);
+            setError(`Hubo un error: ${error instanceof Error ? error.message : 'Error desconocido'}`);
         } finally {
             setLoading(false);
         }

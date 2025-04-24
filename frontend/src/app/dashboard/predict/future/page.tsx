@@ -17,35 +17,35 @@ export default function PrediccionForm() {
     const historial: ConsumoMensual[] = [
         {
             mes: "abril",
-            anio: 2023,
-            electricidad_uso: 1100.0,
+            anio: 2024,
+            electricidad_uso: 11030.0,
             auto_uso: 323.33,
             avion_uso: 1,
             residuos_uso: 473.33,
             agua_uso: 97.67,
-            emisiones_estimadas: 4200.25,
+            emisiones_estimadas: 42700.25,
             clasificacion: "medio",
         },
         {
             mes: "mayo",
-            anio: 2023,
-            electricidad_uso: 1100.0,
+            anio: 2024,
+            electricidad_uso: 11100.0,
             auto_uso: 323.33,
             avion_uso: 1,
             residuos_uso: 473.33,
             agua_uso: 97.67,
-            emisiones_estimadas: 4200.25,
+            emisiones_estimadas: 422500.25,
             clasificacion: "medio",
         },
         {
             mes: "junio",
-            anio: 2023,
+            anio: 2024,
             electricidad_uso: 1100.0,
             auto_uso: 323.33,
             avion_uso: 1,
             residuos_uso: 473.33,
             agua_uso: 97.67,
-            emisiones_estimadas: 4200.25,
+            emisiones_estimadas: 25200.25,
             clasificacion: "medio",
         },
     ];
@@ -140,3 +140,5 @@ export default function PrediccionForm() {
         </div>
     );
 }
+
+// eQa2sS2lwh5VyXMP
