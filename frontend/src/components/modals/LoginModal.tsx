@@ -15,7 +15,7 @@ const LoginModal = ({ isOpen, onClose, onOpenRegister }: LoginModalProps) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter(); // <- hook para redirigir
+  const router = useRouter(); // hook para redirigir
 
   if (!isOpen) return null;
 

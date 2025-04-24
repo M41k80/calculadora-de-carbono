@@ -34,7 +34,7 @@ const Hero = () => {
       </div>
 
       {/* Header Navigation */}
-      <header className="absolute top-1 left-0 right-0 z-20 px-6 pointer-events-auto">
+      <header className="absolute top-1 left-0 right-0 z-20 px-10 pointer-events-auto">
         <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 bg-transparent">
           <div className="flex justify-center sm:justify-start z-20">
             <Image
