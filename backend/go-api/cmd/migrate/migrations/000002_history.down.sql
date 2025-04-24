@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS emissions_history; 
+DROP TABLE IF EXISTS historial_emisiones; 

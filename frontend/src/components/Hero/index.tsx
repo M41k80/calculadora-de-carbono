@@ -27,21 +27,21 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0A0B0C] text-white flex flex-col items-center justify-center px-4">
+    <div className="relative min-h-screen bg-[#0A0B0C] text-white flex flex-col items-center justify-center px-4 md:pt-[0px] pt-[110px]">
       {/* Fondo Glow */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0">
         <div className="w-[220px] h-[230px] md:w-[350px] md:h-[370px] rounded-full bg-amber-600 opacity-70 md:blur-[70px] blur-[50px] mt-8" />
       </div>
 
       {/* Header Navigation */}
-      <header className="absolute top-6 left-0 right-0 z-20 px-6 pointer-events-auto">
+      <header className="absolute top-1 left-0 right-0 z-20 px-10 pointer-events-auto">
         <div className="relative flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 bg-transparent">
           <div className="flex justify-center sm:justify-start z-20">
             <Image
-              src="/Logo.png"
+              src="/carboniq.png"
               alt="Logo"
-              width={160}
-              height={160}
+              width={140}
+              height={140}
               style={{ height: "auto" }}
             />
           </div>
@@ -72,7 +72,7 @@ const Hero = () => {
           Calculá tu huella <br />
           <span className="text-[#DDDDDD]">y transformá tu impacto</span>
         </h1>
-        <p className="text-base md:text-lg text-[#B5B5B5] mb-20 mt-6 font-normal">
+        <p className="text-base md:text-lg text-[#B5B5B5] mb-10  md:mb-20 mt-6 font-normal">
           Descubrí una forma simple y precisa de conocer el impacto ambiental{" "}
           <br className="hidden md:block" />
           de tu empresa y convertir datos en decisiones.

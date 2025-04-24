@@ -1,11 +1,12 @@
 package main
 
 import (
-	_ "github.com/go-sql-driver/mysql"
-	"calculadora-service/internal/database"
 	"database/sql"
 	"flag"
 	"log"
+
+	"calculadora-service/internal/database"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type application struct {
@@ -18,7 +19,7 @@ func main() {
 
 	dsn := flag.String("dsn", "root:admin@tcp(localhost:3306)/carbono", "MySQL Database DSN ")
 	addr := flag.String("addr", "4000", "HTTP network address")
-	jwt  := flag.String("jwt", "no-tan-secreto", "JWT secret")
+	jwt := flag.String("jwt", "no-tan-secreto", "JWT secret")
 
 	flag.Parse()
 
@@ -30,6 +31,9 @@ func main() {
 	defer db.Close()
 
 	models := database.NewModels(db)
+
+
+
 	app := &application{
 		addr:      *addr,
 		jwtSecret: *jwt,

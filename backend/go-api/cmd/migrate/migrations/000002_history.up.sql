@@ -1,18 +1,14 @@
-
-CREATE TABLE emissions_history (
+CREATE TABLE historial_emisiones (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT NOT NULL,
-    month INT NOT NULL,                 -- 1 = Enero, 5 = Mayo, etc.
-    year INT NOT NULL,
-    electricity_usage DECIMAL(10, 2),   -- en kWh
-    car_usage DECIMAL(10, 2),           -- en km
-    flight_usage INT,                   -- número de vuelos
-    waste_usage DECIMAL(10, 2),         -- en kg
-    water_usage DECIMAL(10, 2),         -- en m³
-    total_emissions DECIMAL(10, 2),     -- en kg CO₂
-    rating VARCHAR(20),                 -- Ej: "Alta", "Media", "Baja"
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    
-    FOREIGN KEY (person_id) REFERENCES people(id)
-        ON DELETE CASCADE
+    user_id INT NOT NULL,
+    mes VARCHAR(20),
+    anio YEAR,
+    electricidad_uso FLOAT,
+    auto_uso FLOAT,
+    avion_uso INT,
+    residuos_uso FLOAT,
+    agua_uso FLOAT,
+    emisiones FLOAT,
+    clasificacion VARCHAR(20),
+    FOREIGN KEY (user_id) REFERENCES people(id) ON DELETE CASCADE
 );

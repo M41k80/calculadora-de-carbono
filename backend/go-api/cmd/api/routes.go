@@ -3,9 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
-
+	"github.com/gin-gonic/gin"
 )
 
 func (app *application) routes() http.Handler {
@@ -16,8 +15,8 @@ func (app *application) routes() http.Handler {
 		AllowMethods:    []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders:    []string{"Origin", "Content-Type", "Authorization"},
 	}))
-	
-	// public routes 
+
+	// public routes
 	v1 := g.Group("/api/v1")
 	{
 		v1.GET("/", app.home)
@@ -32,7 +31,6 @@ func (app *application) routes() http.Handler {
 	{
 		authGroup.POST("/carbon/upload", app.UploadCSV)
 		authGroup.GET("/carbon/history", app.GetHistory)
-		authGroup.POST("/carbon/predict", app.Predict)
 	}
 
 	return g
