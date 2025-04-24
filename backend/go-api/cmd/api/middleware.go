@@ -70,6 +70,8 @@ func (app *application) AuthMiddleware() gin.HandlerFunc {
 
 		// 7. Almacenar el usuario en el contexto para uso en los handlers
 		c.Set("user", user)
+		// 7.1 Almacernar el id 
+		c.Set("userID", uint(user.Id))
 
 		// 8. Continuar con el siguiente middleware/handler
 		c.Next()

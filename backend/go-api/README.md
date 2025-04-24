@@ -55,12 +55,22 @@ go build -o carbono-service ./cmd/api/
 
 
 
-### This repo use go migrate
+## This repo use go migrate
 
-Example for a new migration.
+### Create a newMigration.
 
 ```
 migrate create -ext sql -dir cmd/migrate/migrations -seq migration_name
 ```
+### Up a migration 
 
 
+```bash
+migrate -path cmd/migrate/migrations/ -database "mysql://root:admin@tcp(localhost:3306)/carbono" up
+```
+
+### Dow a migration 
+
+```bash
+migrate -path cmd/migrate/migrations/ -database "mysql://root:admin@tcp(localhost:3306)/carbono" down
+```
