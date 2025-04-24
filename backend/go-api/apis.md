@@ -3,6 +3,7 @@
 ### Endpoint
 ```
 POST /api/v1/auth/register
+ "https://calculadora-de-carbono-1rzt.onrender.com/api/v1/auth/register"
 ```
 ### Request Body
 ```json
@@ -19,6 +20,7 @@ POST /api/v1/auth/register
 ### Endpoint
 ```
 POST /api/v1/auth/login
+ "https://calculadora-de-carbono-1rzt.onrender.com/api/v1/auth/login"
 ```
 ### Request Body
 ```json
