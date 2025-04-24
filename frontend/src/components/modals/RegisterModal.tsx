@@ -48,10 +48,10 @@ const RegisterModal = ({ isOpen, onClose, onBackToLogin }: RegisterModalProps) =
         bg-black/70 backdrop-blur-sm border border-white/10
         shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white pointer-events-auto"
       >
-        <button onClick={onBackToLogin} className="absolute top-4 left-4 text-white hover:text-gray-300">
+        <button onClick={onBackToLogin} className="absolute top-4 left-4 text-white hover:text-gray-300 cursor-pointer">
           <ArrowLeft size={22} />
         </button>
-        <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-gray-300">
+        <button onClick={onClose} className="absolute top-4 right-4 text-white hover:text-gray-300 cursor-pointer">
           <X size={22} />
         </button>
 
@@ -74,6 +74,12 @@ const RegisterModal = ({ isOpen, onClose, onBackToLogin }: RegisterModalProps) =
           </div>
 
           <div>
+            <label className="block text-sm mb-1">Empresa:</label>
+            <input value={companyname} onChange={(e) => setCompanyname(e.target.value)} type="text" required
+              className="w-full px-4 py-2 rounded-lg bg-[#D9D9D9] text-black" placeholder="Nombre de tu empresa" />
+          </div>
+
+          <div>
             <label className="block text-sm">Contraseña:</label>
             <p className="text-xs text-gray-400 mb-1">Mínimo 6 caracteres</p>
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required minLength={6}
@@ -87,16 +93,12 @@ const RegisterModal = ({ isOpen, onClose, onBackToLogin }: RegisterModalProps) =
               className="w-full px-4 py-2 rounded-lg bg-[#D9D9D9] text-black" placeholder="●●●●●●" />
           </div>
 
-          <div>
-            <label className="block text-sm mb-1">Empresa:</label>
-            <input value={companyname} onChange={(e) => setCompanyname(e.target.value)} type="text" required
-              className="w-full px-4 py-2 rounded-lg bg-[#D9D9D9] text-black" placeholder="Nombre de tu empresa" />
-          </div>
+
 
           {error && <p className="text-red-400 text-sm text-center">{error}</p>}
 
           <button type="submit" disabled={isLoading}
-            className="mt-4 px-10 py-1 self-center rounded-2xl border-2 border-[#838383] text-[#EA5105] font-semibold hover:bg-orange-600 hover:text-white transition disabled:opacity-50">
+            className="mt-4 px-10 py-1 self-center rounded-2xl border-2 border-[#838383] text-[#EA5105] font-semibold hover:bg-orange-600 hover:text-white transition disabled:opacity-50 cursor-pointer">
             {isLoading ? "Registrando..." : "Registrarme"}
           </button>
         </form>
