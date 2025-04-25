@@ -4,7 +4,6 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Cardslider from "@/components/Cardslider";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
-import ScrollContainer from "@/components/Scrollcontainer";
 
 interface MonthPrediction {
   mes: string;
@@ -97,7 +96,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#0B0C0D] flex flex-col lg:flex-row px-4">
       {/* Sidebar */}
       <Sidebar />
       
@@ -120,7 +119,7 @@ export default function Dashboard() {
           <div>
             <div className="mb-8 flex flex-col items-center gap-4">
               <h2 className="text-white font-medium text-center sm:text-left">
-                Selecciona meses a predecir
+                Genera una predicción
               </h2>
               <Cardslider
                 onChange={(seleccionados) =>
@@ -131,9 +130,9 @@ export default function Dashboard() {
               <button
                 onClick={handleGenerate}
                 disabled={loading || selectedCount === 0}
-                className="px-6 py-2 bg-[#212226] hover:bg-zinc-700 text-[#EA5105] font-bold rounded-full disabled:opacity-50"
+                className="px-16 py-2 bg-[#0B0C0D] border-2 border-[#838383] hover:bg-zinc-700 text-[#EA5105] font-bold rounded-2xl  cursor-pointer"
               >
-                {loading ? "Generando..." : "Generar Ahora"}
+                {loading ? "Generando..." : "Generar ahora"}
               </button>
             </div>
 
@@ -151,7 +150,7 @@ export default function Dashboard() {
                         Emisiones estimadas: {p.emisiones_estimadas.toFixed(2)}{" "}
                         kg CO₂
                       </p>
-                      <p className="mt-2 text-green-400">
+                      <p className="mt-2 text-[#EA5105]">
                         Clasificación: {p.clasificacion}
                       </p>
                     </div>

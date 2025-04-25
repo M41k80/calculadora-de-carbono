@@ -50,7 +50,7 @@ const Cardslider: React.FC<CardsliderProps> = ({ onChange }) => {
               className={`p-4 rounded-lg shadow-md flex items-center justify-center cursor-pointer transition-colors
                 ${
                   seleccionados.includes(mes)
-                    ? "bg-green-600 text-white"
+                    ? "bg-[#EA5105] text-white"
                     : "bg-[#212226] text-white"
                 }`}
             >
