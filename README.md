@@ -1,80 +1,152 @@
-# 🌍 **Proyecto: Calculadora de Huella de Carbono para Empresas**
+<div align="center">
+<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/portada.png" alt="portada" />
+</div>
 
-## 🎯 **Objetivo**
-El propósito de este proyecto es ayudar a las empresas a medir, visualizar y reducir su huella de carbono a través de una plataforma web fácil de usar. La plataforma integra:
+# 🌱 CarbonIQ | Plataforma Predictiva de Huella de Carbono
 
-- **Cálculo automatizado de emisiones** basadas en el consumo de energía, transporte, residuos, y otros factores.
-- **Predicciones de emisiones futuras** utilizando modelos de IA.
-- **Recomendaciones personalizadas** para reducir las emisiones y promover prácticas más sostenibles.
+**CarbonIQ** es una plataforma digital diseñada para empresas medianas y grandes que desean conocer, analizar y reducir su impacto ambiental. A través del uso de inteligencia artificial, permite procesar datos de consumo y generar predicciones y recomendaciones inteligentes sobre la huella de carbono.
 
-## 🔧 **Tecnologías Utilizadas**
-- **Dataset**: Dataset de emisiones de c02 Climatiq.io
-- **Backend**: FastAPI
-- **Frontend**: React.js (por definir si se incluirá)
-- **Modelos de IA**: Scikit-learn / TensorFlow (para predicciones de emisiones)
-- **Base de datos**: (en caso de usar una DB)
-- **Plataforma de Despliegue**: Render
+---
 
-# Endpoint
+<div align="center">
+<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/home-mockup.png" alt="home" />
+</div>
 
-## POST /predict/emisiones
+## 🎯 Objetivo
 
-URL:
+Facilitar la toma de decisiones sostenibles al ofrecer análisis automáticos y visualizaciones claras de los datos de consumo ambiental de cada empresa.
 
-https://calculadora-carbono-7ero.onrender.com/predict/emisiones/
+---
 
+## ❗ Problema y Solución
 
-{
-    "electricidad_uso": 100,
-    "auto_uso": 10,
-    "avion_uso": 3,
-    "residuos_uso": 15,
-    "agua_uso": 35
-}
+- **Problema Identificado:** Las empresas carecen de herramientas accesibles, visuales y predictivas que les permitan anticipar y reducir su impacto ambiental de forma eficiente.
 
-## electricidad_uso: Consumo de electricidad en kWh.
-## auto_uso: Kilómetros recorridos en automóvil.
-## avion_uso: Número de vuelos tomados por la empresa.
-## residuos_uso: Cantidad de residuos generados en la empresa (en kg).
-## agua_uso: Consumo de agua en litros por m3.
+- **Nuestra Solución:** CarbonIQ entrega una solución intuitiva y poderosa. Permite cargar datos, analizar tendencias, visualizar comparativas y recibir sugerencias automáticas de optimización, todo bajo una interfaz moderna en modo oscuro.
 
+---
 
+## ✨ Características Destacadas
 
-# 📊 Ejemplo de Uso
+- 📁 **Carga de archivos SCSV mensual y anual**
+- 🔮 **Predicciones automáticas por IA**
+- 🧠 **Recomendaciones inteligentes por categoría (transporte, agua, gas, electricidad, vuelos)**
+- 📊 **Visualización de comparativas por períodos**
+- 🌚 **Diseño atractivo en modo oscuro**
+- 👥 **Probado con usuarios sin experiencia técnica, con resultados positivos**
 
-## Realiza una petición POST con los valores deseados:
+---
 
-curl -X 'POST' \
-  'https://calculadora-carbono-7ero.onrender.com/predict/emisiones/' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "electricidad_uso": 100,
-  "auto_uso": 10,
-  "avion_uso": 3,
-  "residuos_uso": 15,
-  "agua_uso": 35
-}'
+## 🔁 Flujo del Usuario
 
+1. **Inicio de sesión o registro**
+2. **Carga de archivo de consumo**
+3. **Análisis y visualización automática**
+4. **Visualización de comparativas y recomendaciones**
+5. **Análisis en Dashboard**
 
+---
 
-## response
+## 🎨 Design UI
 
-{
-    "emisiones_estimadas": 531.2031430597182,
-    "clasificacion": "baja",
-    "consejos": "1. Electricidad:\n   - Aumentar la eficiencia energética en la empresa. Esto se puede lograr mediante la implementación de aparatos de consumo bajo, la inspección y mantenimiento regular de la iluminación y la instalación de paneles solares en el techo de la oficina o en un parque solar.\n   - Contratar energía renovable de proveedores certificados.\n\n2. Auto:\n   - Fomentar el trabajo desde casa, si es posible, para reducir el número de viajes a pie o en bicicleta.\n   - Si es necesario viajar, utilizar vehículos híbridos o eléctricos.\n   - Combinar los viajes de los empleados para reducir el número de coches en carretera.\n\n3. Vuelos:\n   - Utilizar videoconferencia o teletrabajo en lugar de vuelos para las reuniones y las visitas a clientes.\n   - Si es necesario viajar, compensar el impacto carbónico del vuelo mediante proyectos de reforestación o reducir el impacto de los viajes en el resto del itinerario.\n\n4. Residuos:\n   -"
-}
+<div align="center">
+<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/vistas-mockup.png" alt="DesignUI" />
+</div>
 
+---
 
-## https://calculadora-carbono-7ero.onrender.com/predict/from-csv-mensual/
+## 🧠 Tecnologías Utilizadas
 
-# para cargar un csv con el formato de ejemplo
+### **🎨 UX/UI Design:**
 
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-## https://calculadora-carbono-7ero.onrender.com/predict/future/
+### **🤖 Inteligencia Artificial:**
 
-# para predicciones futuras
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Joblib](https://img.shields.io/badge/Joblib-777BB4?style=for-the-badge)
+![Climatiq.io](https://img.shields.io/badge/Climatiq.io-4F46E5?style=for-the-badge)
 
+### **🖥️ Frontend:**
 
-## https://calculadora-carbono-7ero.onrender.com/chat-carbono 
-# para el chat
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts-888?style=for-the-badge)
+![Keen Slider](https://img.shields.io/badge/Keen--Slider-000?style=for-the-badge)
+![Swiper](https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge)
+
+### **⚙️ Backend:**
+
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Render](https://img.shields.io/badge/Render-000000?style=for-the-badge)
+
+### **🔧 Herramientas y Librerías:**
+
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)
+
+---
+
+### **📌 Enlaces del Proyecto**
+
+[![FIGMA](https://img.shields.io/badge/figma-9C55F7?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/x2aiwxnd25cZlqTqA9FMCg/Untitled?node-id=0-1&t=90y74QwopVjnzq9F-1)
+[![Sitio web](https://img.shields.io/website?url=https%3A%2F%2Ffipe.cl&style=for-the-badge)]()
+
+---
+
+## 🤝 Nuestro Equipo
+
+<table align="center">
+  <tr>
+    <td align="center">Luis Quispe <img src="img/pe.png" width="16" /></td>
+    <td align="center">José Mora <img src="img/mex.png" width="16" /></td>
+    <td align="center">Christian Aránguiz <img src="img/ve.png" width="16" /></td>
+    <td align="center">Karim Jalit <img src="img/ar.png" width="16" /></td>
+    <td align="center">Caleb Seña <img src="img/col.png" width="16" /></td>
+  </tr>
+  <tr>
+    <td align="center">PM & Front-End</td>
+    <td align="center">Full Stack</td>
+    <td align="center">Front-End</td>
+    <td align="center">Design UX/UI</td>
+    <td align="center">Back-End</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/luis-angel-quispe/">
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/jose-magdiel-mora-perez-0384492b9/">
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/christian-aranguiz-a2b05a198/">
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/karim-jalit-8b4439299/">
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/calebsenm/">
+        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
