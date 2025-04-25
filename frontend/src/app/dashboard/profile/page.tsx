@@ -164,10 +164,10 @@ const Profile = () => {
                 </div>
 
                 {/* Botones */}
-                <div className="flex gap-4">
+                <div className="flex gap-4 flex-col sm:flex-row items-center">
                   <button
                     onClick={handleGuardarCambios}
-                    className="bg-[#EA5105] hover:bg-orange-600 text-white font-semibold px-10 py-2 rounded-lg cursor-pointer"
+                    className="bg-[#EA5105] hover:bg-orange-600 text-white font-semibold sm:px-4 px-10 py-2 rounded-lg cursor-pointer"
                   >
                     Guardar cambios
                   </button>
