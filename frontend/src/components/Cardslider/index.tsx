@@ -25,7 +25,7 @@ const Cardslider: React.FC<CardsliderProps> = ({ onChange }) => {
 
   useEffect(() => {
     if (onChange) onChange(seleccionados);
-  }, [seleccionados]);
+  }, [seleccionados, onChange]);
 
   const seleccionarMes = (mes: string) => {
     setSeleccionados((prev) =>
