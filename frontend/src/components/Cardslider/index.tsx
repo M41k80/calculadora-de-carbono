@@ -10,19 +10,26 @@ const TODOS_LOS_MESES = [
   "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 ];
 
-const Cardslider = () => {
+interface CardsliderProps {
+  onChange?: (seleccionados: string[]) => void;
+}
+
+const Cardslider: React.FC<CardsliderProps> = ({ onChange }) => {
   const [mesesDisponibles, setMesesDisponibles] = useState<string[]>([]);
   const [seleccionados, setSeleccionados] = useState<string[]>([]);
 
   useEffect(() => {
-    const mesActual = new Date().getMonth(); // 0-enero, 1-febrero, ..., 11-diciembre
-    const mesesFuturos = TODOS_LOS_MESES.slice(mesActual + 1);
-    setMesesDisponibles(mesesFuturos);
+    const mesActual = new Date().getMonth();
+    setMesesDisponibles(TODOS_LOS_MESES.slice(mesActual + 1));
   }, []);
 
-  const toggleSeleccion = (mes: string) => {
-    setSeleccionados(prev =>
-      prev.includes(mes) ? prev.filter(m => m !== mes) : [...prev, mes]
+  useEffect(() => {
+    if (onChange) onChange(seleccionados);
+  }, [seleccionados]);
+
+  const seleccionarMes = (mes: string) => {
+    setSeleccionados((prev) =>
+      prev.includes(mes) || prev.length >= 12 ? prev : [...prev, mes]
     );
   };
 
@@ -33,14 +40,14 @@ const Cardslider = () => {
         spaceBetween={20}
         slidesPerView={5}
         loop={false}
-        navigation={true}
+        navigation
         className="w-200 custom-swiper"
       >
-        {mesesDisponibles.map((mes, index) => (
-          <SwiperSlide key={index}>
+        {mesesDisponibles.map((mes, idx) => (
+          <SwiperSlide key={idx}>
             <div
-              onClick={() => toggleSeleccion(mes)}
-              className={`p-4 rounded-lg shadow-md flex items-center justify-center cursor-pointer 
+              onClick={() => seleccionarMes(mes)}
+              className={`p-4 rounded-lg shadow-md flex items-center justify-center cursor-pointer transition-colors
                 ${
                   seleccionados.includes(mes)
                     ? "bg-green-600 text-white"

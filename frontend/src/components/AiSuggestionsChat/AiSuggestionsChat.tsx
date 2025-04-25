@@ -78,10 +78,10 @@ export default function AiSuggestionsChat() {
             <li>Tomá decisiones más inteligentes, con datos reales!</li>
             <li>Evitá errores comunes con recomendaciones claras y aplicables.</li>
             <li>Aprovechá todo el potencial de tus datos para tomar mejores
-            decisiones.</li>
-         </ul>
+              decisiones.</li>
+          </ul>
           <p className="text-sm sm:text-xs text-white text-center mb-2">
-            
+
           </p>
           <button
             onClick={() => setShowOriginalContent(true)}
@@ -118,11 +118,10 @@ export default function AiSuggestionsChat() {
                   {messages.map((message, index) => (
                     <div
                       key={index}
-                      className={`max-w-[85%] rounded-lg p-3 ${
-                        message.role === "user"
+                      className={`max-w-[85%] rounded-lg p-3 ${message.role === "user"
                           ? "bg-gray-700 text-white self-end"
                           : "bg-gray-800 text-white self-start border-l-2 border-[#EA5105]"
-                      }`}
+                        }`}
                     >
                       {message.content}
                     </div>
