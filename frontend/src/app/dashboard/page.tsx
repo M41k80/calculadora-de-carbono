@@ -4,6 +4,7 @@ import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Cardslider from "@/components/Cardslider";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
+import ScrollContainer from "@/components/Scrollcontainer";
 
 interface MonthPrediction {
   mes: string;
@@ -97,7 +98,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-black flex flex-col lg:flex-row">
+      {/* Sidebar */}
       <Sidebar />
+      
+      {/* Main Content composed by Left Section and Right Section */}
       <div className="px-4 sm:px-6 md:px-10 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           <h1 className="text-2xl font-bold text-white text-center sm:text-left">
@@ -112,61 +116,62 @@ export default function Dashboard() {
           />
         </div>
         <div className="flex gap-5">
+          {/* Left Section */}
           <div>
-          <div className="mb-8 flex flex-col items-center gap-4">
-            <h2 className="text-white font-medium text-center sm:text-left">
-              Selecciona meses a predecir
-            </h2>
-            <Cardslider
-              onChange={(seleccionados) =>
-                setSelectedCount(seleccionados.length)
-              }
-            />
+            <div className="mb-8 flex flex-col items-center gap-4">
+              <h2 className="text-white font-medium text-center sm:text-left">
+                Selecciona meses a predecir
+              </h2>
+              <Cardslider
+                onChange={(seleccionados) =>
+                  setSelectedCount(seleccionados.length)
+                }
+              />
 
-            <button
-              onClick={handleGenerate}
-              disabled={loading || selectedCount === 0}
-              className="px-6 py-2 bg-[#212226] hover:bg-zinc-700 text-[#EA5105] font-bold rounded-full disabled:opacity-50"
-            >
-              {loading ? "Generando..." : "Generar Ahora"}
-            </button>
-          </div>
+              <button
+                onClick={handleGenerate}
+                disabled={loading || selectedCount === 0}
+                className="px-6 py-2 bg-[#212226] hover:bg-zinc-700 text-[#EA5105] font-bold rounded-full disabled:opacity-50"
+              >
+                {loading ? "Generando..." : "Generar Ahora"}
+              </button>
+            </div>
 
-          <div className="text-white space-y-4">
-            <h3 className="font-semibold">Resultado de la predicción:</h3>
-            {predicciones.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {predicciones.map((p, i) => (
-                  <div key={i} className="bg-gray-900 p-4 rounded-xl">
-                    <h4 className="text-lg font-bold">
-                      {p.mes.charAt(0).toUpperCase() + p.mes.slice(1)} {p.anio}
-                    </h4>
-                    <p className="mt-1 text-gray-300">
-                      Emisiones estimadas: {p.emisiones_estimadas.toFixed(2)} kg
-                      CO₂
-                    </p>
-                    <p className="mt-2 text-green-400">
-                      Clasificación: {p.clasificacion}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500">
-                Aún no se han generado predicciones.
-              </p>
-            )}
-
-            {consejos && (
-              <div className="mt-6 bg-gray-800 p-4 rounded-lg text-gray-300 whitespace-pre-line">
-                <h4 className="text-white font-semibold mb-2">Consejos:</h4>
-                {consejos}
-              </div>
-            )}
+            <div className="flex flex-col text-white space-y-4">
+              <h3 className="font-semibold">Resultado de la predicción:</h3>
+              {predicciones.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {predicciones.map((p, i) => (
+                    <div key={i} className="bg-gray-900 p-4 rounded-xl">
+                      <h4 className="text-lg font-bold">
+                        {p.mes.charAt(0).toUpperCase() + p.mes.slice(1)}{" "}
+                        {p.anio}
+                      </h4>
+                      <p className="mt-1 text-gray-300">
+                        Emisiones estimadas: {p.emisiones_estimadas.toFixed(2)}{" "}
+                        kg CO₂
+                      </p>
+                      <p className="mt-2 text-green-400">
+                        Clasificación: {p.clasificacion}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-500">
+                  Aún no se han generado predicciones.
+                </p>
+              )}
+              {consejos && (
+                <div className="mt-6 bg-gray-800 p-4 rounded-lg text-gray-300 whitespace-pre-line overflow-auto h-[40vh]">
+                  <h4 className="text-white font-semibold mb-2">Consejos:</h4>
+                  {consejos}
+                </div>
+              )}
+            </div>
           </div>
-          </div>
+          {/* Right Section */}
           <AiSuggestionsChat />
-
         </div>
       </div>
     </div>
