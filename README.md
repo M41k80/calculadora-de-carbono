@@ -99,7 +99,7 @@ Facilitar la toma de decisiones sostenibles al ofrecer análisis automáticos y 
 ### **📌 Enlaces del Proyecto**
 
 [![FIGMA](https://img.shields.io/badge/figma-9C55F7?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/x2aiwxnd25cZlqTqA9FMCg/Untitled?node-id=0-1&t=90y74QwopVjnzq9F-1)
-[![Sitio web](https://img.shields.io/website?url=https%3A%2F%2Ffipe.cl&style=for-the-badge)]()
+[![Sitio web](https://img.shields.io/website?url=https%3A%2F%2Ffipe.cl&style=for-the-badge)](https://carboniq.vercel.app/)
 
 ---
 
