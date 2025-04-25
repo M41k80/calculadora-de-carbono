@@ -104,8 +104,9 @@ export default function Dashboard() {
       <div className="px-4 sm:px-6 md:px-10 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           <h1 className="text-2xl font-bold text-white text-center sm:text-left">
-            Buenos días Karim
-          </h1>
+            Buenos días CAPSULE CORP          
+            </h1>
+            
           <Image
             src="/profile.png"
             alt="Perfil"
