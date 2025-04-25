@@ -5,6 +5,7 @@ import Image from "next/image";
 import Cardslider from "@/components/Cardslider";
 import ScrollContainer from "@/components/Scrollcontainer";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
+import CardsliderYear from "@/components/CardSliderYear";
 
 const Dashboard = () => {
   return (
@@ -63,7 +64,7 @@ const Dashboard = () => {
             <div className="gap-4 mt-4 flex flex-col items-center">
               <h1 className="mt-3">Genera una petición</h1>
               <Cardslider />
-              <div className="bg-black hover:bg-[#212226] border border-[#838383] h-8 mb-3 rounded-full w-50 text-[#EA5105] font-bold text-center cursor-pointer transform transition-transform duration-300 hover:scale-105">
+              <div className="flex justify-center items-center bg-black hover:bg-[#212226] border border-[#838383] h-10 mb-3 rounded-full w-50 text-[#EA5105] font-bold text-center cursor-pointer transform transition-transform duration-300 hover:scale-105">
                 {" "}
                 Generar Ahora
               </div>
@@ -73,7 +74,7 @@ const Dashboard = () => {
             </div>
             <ScrollContainer />
           </div>
-            <AiSuggestionsChat />
+          <AiSuggestionsChat />
         </div>
       </div>
     </div>

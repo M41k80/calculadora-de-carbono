@@ -6,6 +6,13 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 
 const Cardslider = () => {
+
+
+
+
+
+
+
   return (
     <div>
       <div className="mt-3 mb-3">
@@ -18,57 +25,57 @@ const Cardslider = () => {
           className="w-200 custom-swiper"
         >
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <button onClick={() => console.log('Probando')} className="w-full hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Enero
-            </div>
+            </button>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Febrero
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Marzo
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Abril
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Mayo
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Junio
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Julio
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Agosto
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Septiembre
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Octubre
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
+            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
               Noviembre
             </div>
           </SwiperSlide>
