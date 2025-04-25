@@ -57,7 +57,7 @@ export default function AiSuggestionsChat() {
   };
 
   return (
-    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] md:h-[60vh] lg:h-[107vh] bg-[#212226] rounded-lg overflow-hidden relative">
+    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] sm:h-[40vh] md:h-[60vh] lg:h-[110vh] bg-[#212226] rounded-lg overflow-hidden relative">
       {/* Loader */}
       {isLoading && (
         <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10">
@@ -65,7 +65,7 @@ export default function AiSuggestionsChat() {
           <div className="animate-spin rounded-full h-32 w-32 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
         </div>
       )}
-
+      {/* Sreensaver for Chatbot */}
       {!showOriginalContent ? (
         <div className="flex flex-col items-center justify-center p-4">
           <h1 className="text-xl font-bold text-[#EA5105] mb-4">
@@ -77,7 +77,7 @@ export default function AiSuggestionsChat() {
             sugerencias personalizadas para seguir reduciendo tu impacto
             ambiental.
           </p>
-          <img src="/RobotChatBot.svg"></img>
+          <img className='' src="/RobotChatBot.svg"></img>
           <ul className="list-disc text-sm text-white mb-2 list-inside pl-4">
             <li>Recibí consejos más específicos según cada categoría.</li>
             <li>Descubrí acciones simples que podés aplicar ya mismo.</li>
@@ -102,6 +102,7 @@ export default function AiSuggestionsChat() {
         </div>
       ) : (
         <>
+        {/* Chat UI */}
           <div className="flex items-center justify-between p-4 border-b border-gray-800">
             <div className="flex items-center gap-2">
               <Lightbulb className="h-5 w-5 text-[#EA5105]" />
