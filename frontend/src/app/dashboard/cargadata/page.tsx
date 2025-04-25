@@ -45,29 +45,36 @@ const CargaData = () => {
       const email = localStorage.getItem("email");
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:3000/historial/save", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          email, 
-          detalle_mensual: data.detalle_mensual,
-          resumen_anual: data.resumen_anual,
-        }),
-      });
+      const response = await fetch(
+        "http://carboniq.vercel.app/historial/save",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            email,
+            detalle_mensual: data.detalle_mensual,
+            resumen_anual: data.resumen_anual,
+          }),
+        }
+      );
 
       if (!response.ok) {
         if (response.status === 401) {
-          throw new Error('Token de autenticación inválido o expirado');
+          throw new Error("Token de autenticación inválido o expirado");
         }
-        throw new Error('Error al guardar el historial');
+        throw new Error("Error al guardar el historial");
       }
 
       setShowSuccess(true);
     } catch (error: unknown) {
-      setError(`Hubo un error: ${error instanceof Error ? error.message : 'Error desconocido'}`);
+      setError(
+        `Hubo un error: ${
+          error instanceof Error ? error.message : "Error desconocido"
+        }`
+      );
     } finally {
       setIsLoading(false);
     }
@@ -81,14 +88,14 @@ const CargaData = () => {
     }
   };
 
-    const [fotoPerfil, setFotoPerfil] = useState<string | null>(null);
-  
-    useEffect(() => {
-      const foto = localStorage.getItem("foto");
-      if (foto) {
-        setFotoPerfil(foto);
-      }
-    }, []);
+  const [fotoPerfil, setFotoPerfil] = useState<string | null>(null);
+
+  useEffect(() => {
+    const foto = localStorage.getItem("foto");
+    if (foto) {
+      setFotoPerfil(foto);
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0B0C0D] flex px-4">
@@ -137,7 +144,7 @@ const CargaData = () => {
               {csvFile ? (
                 <>
                   <Image
-                    src="/file-selected.png" 
+                    src="/file-selected.png"
                     alt="Archivo seleccionado"
                     className="object-cover"
                     width={60}
@@ -186,7 +193,9 @@ const CargaData = () => {
             {/* Botón Enviar */}
             <div className="mt-6">
               <button
-                className={`bg-[#EA5105] hover:bg-orange-700 text-white font-semibold py-2 px-10 rounded-lg shadow-md transition duration-200 cursor-pointer ${!csvFile ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`bg-[#EA5105] hover:bg-orange-700 text-white font-semibold py-2 px-10 rounded-lg shadow-md transition duration-200 cursor-pointer ${
+                  !csvFile ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 onClick={handleSubmit}
                 disabled={!csvFile}
               >
