@@ -109,7 +109,7 @@ Facilitar la toma de decisiones sostenibles al ofrecer análisis automáticos y 
   <tr>
     <td align="center">Luis Quispe <img src="img/pe.png" width="16" /></td>
     <td align="center">José Mora <img src="img/mex.png" width="16" /></td>
-    <td align="center">Christian Aránguiz <img src="img/ve.png" width="16" /></td>
+    <td align="center">Christian Aránguiz <img src="img/ven.png" width="16" /></td>
     <td align="center">Karim Jalit <img src="img/ar.png" width="16" /></td>
     <td align="center">Caleb Seña <img src="img/col.png" width="16" /></td>
   </tr>
