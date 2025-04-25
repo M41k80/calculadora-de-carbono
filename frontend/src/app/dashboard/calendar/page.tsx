@@ -1,120 +1,106 @@
 "use client";
-import React, { useState, useRef } from "react";
+
+import React, { useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import Image from "next/image";
-import SuccessModal from "@/components/modals/SuccessModal";
 
 const Calendar = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showCard, setShowCard] = useState(false);
+  const [selectedMonths, setSelectedMonths] = useState<string[]>([
+    "abril",
+    "mayo",
+    "junio",
+  ]);
 
-  const handleSubmit = () => {
+  const months = [
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+  ];
+
+  const handleToggleMonth = (month: string) => {
+    if (selectedMonths.includes(month)) {
+      setSelectedMonths(selectedMonths.filter((m) => m !== month));
+    } else {
+      setSelectedMonths([...selectedMonths, month]);
+    }
+  };
+
+  const handleGenerate = () => {
     setIsLoading(true);
-    setShowSuccess(false);
+    setShowCard(false);
 
     setTimeout(() => {
       setIsLoading(false);
-      setShowSuccess(true);
+      setShowCard(true);
     }, 3000);
-  };
-
-  const handleReset = () => {
-    setShowSuccess(false);
-  };
-
-  const handleFileClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      console.log("Archivo seleccionado:", file.name);
-      // Aquí podrías validar, mostrar nombre, o enviar a backend
-    }
   };
 
   return (
     <div className="min-h-screen bg-[#0B0C0D] flex px-4">
       <Sidebar />
-      <div className="flex flex-col w-full px-6 sm:px-10 pt-6 relative">
-        {/* Imagen de perfil */}
-        <div className="flex justify-end pr-2 sm:pr-4">
-          <Image
-            src="/profile.png"
-            alt="Perfil"
-            className="rounded-full object-cover border border-white/20"
-            width={40}
-            height={40}
-          />
+
+      <div className="flex flex-col w-full px-6 pt-10 text-white">
+        <h1 className="text-2xl sm:text-4xl font-semibold mb-4">
+          Selecciona una fecha:
+        </h1>
+        <p className="text-sm sm:text-base text-[#D1D1D1] mb-6 font-light max-w-xl">
+          Elegí un rango de fechas para que la inteligencia artificial analice
+          tus datos y genere una predicción sobre el impacto ambiental de tu
+          empresa durante ese período.
+        </p>
+
+        <div className="flex items-center gap-2 flex-wrap mb-8">
+          <span className="text-xl font-semibold">&lt;</span>
+          {months.map((month) => (
+            <button
+              key={month}
+              onClick={() => handleToggleMonth(month)}
+              className={`px-4 py-1 rounded-full text-sm font-medium transition 
+                ${
+                  selectedMonths.includes(month)
+                    ? "bg-[#EA5105] text-white"
+                    : "bg-[#2E2E2E] text-white hover:bg-[#3B3B3B]"
+                }`}
+            >
+              {month}
+            </button>
+          ))}
+          <span className="text-xl font-semibold">&gt;</span>
         </div>
 
+        <button
+          onClick={handleGenerate}
+          className="bg-[#EA5105] hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg cursor-pointer w-fit"
+        >
+          Generar
+        </button>
+
         {/* Loader */}
-        {isLoading ? (
-          <div className="flex-1 flex flex-col justify-center items-center text-white">
-            <p className="mb-6 text-xl font-normal text-white">
-              Cargando y analizando datos
+        {isLoading && (
+          <div className="flex flex-col justify-center items-center mt-10">
+            <p className="mb-4 text-white text-base sm:text-lg">
+              Cargando análisis...
             </p>
-            <div className="animate-spin rounded-full h-40 w-40 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
+            <div className="animate-spin rounded-full h-32 w-32 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
           </div>
-        ) : showSuccess ? (
-          <SuccessModal onClose={handleReset} />
-        ) : (
-          // Formulario de carga de datos
-          <div className="flex flex-col justify-start items-start w-full max-w-2xl mx-auto text-white">
-            <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-              Carga de datos
-            </h1>
-            <p className="text-[#B1B1B1] mb-6 text-sm sm:text-base font-light">
-              Adjuntá un archivo para cargar tus datos de emisiones
+        )}
+
+        {/* Card con resultado */}
+        {showCard && (
+          <div className="mt-10 bg-[#1C1D1F] rounded-xl shadow-lg p-6 max-w-3xl w-full">
+            <h2 className="text-xl font-semibold mb-2">
+              Resultado del análisis
+            </h2>
+            <p className="text-sm text-[#B1B1B1]">
+              Aquí aparecerá tu gráfico de predicciones basado en los meses
+              seleccionados.
             </p>
-
-            {/* Drop Zone */}
-            <div className="border-2 border-dashed border-[#3f3f3f] rounded-xl w-full max-w-[680px] h-[260px] sm:h-[300px] bg-[#0B0C0D] flex flex-col justify-center items-center gap-4">
-              <Image
-                src="/upload.png"
-                alt="upload"
-                className="object-cover"
-                width={60}
-                height={60}
-              />
-              <p className="text-sm sm:text-base text-white font-light text-center px-4">
-                Arrastrá y soltá el archivo aquí o
-              </p>
-
-              <>
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileChange}
-                  className="hidden"
-                  accept=".csv,.scsv,.txt,.xls,.xlsx"
-                />
-                <button
-                  onClick={handleFileClick}
-                  className="bg-[#202226] hover:bg-[#2a2a2a] text-white px-6 py-2 rounded-md text-sm transition cursor-pointer"
-                >
-                  Seleccionar archivo
-                </button>
-              </>
-            </div>
-
-            {/* Informacion adicional */}
-            <p className="text-sm sm:text-base text-[#B1B1B1] mt-4 leading-relaxed font-light">
-              Archivos admitidos: .SCSV (Transporte, electricidad, gas, agua,
-              vuelos y todos los necesarios para el cálculo)
-            </p>
-
-            {/* Botón Enviar */}
-            <div className="mt-6">
-              <button
-                className="bg-[#EA5105] hover:bg-orange-700 text-white font-semibold py-2 px-10 rounded-lg shadow-md transition duration-200 cursor-pointer"
-                onClick={handleSubmit}
-              >
-                Enviar
-              </button>
-            </div>
           </div>
         )}
       </div>
