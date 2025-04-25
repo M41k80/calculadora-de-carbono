@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/portada.png" alt="portada" />
+<img src="img/portada.png" alt="portada" />
 </div>
 
 # 🌱 CarbonIQ | Plataforma Predictiva de Huella de Carbono
@@ -9,7 +9,7 @@
 ---
 
 <div align="center">
-<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/home-mockup.png" alt="home" />
+<img src="img/home-mockup.png" alt="home" />
 </div>
 
 ## 🎯 Objetivo
@@ -50,7 +50,7 @@ Facilitar la toma de decisiones sostenibles al ofrecer análisis automáticos y 
 ## 🎨 Design UI
 
 <div align="center">
-<img src="https://github.com/M41k80/app-prediccion-tendencias/blob/main/img/vistas-mockup.png" alt="DesignUI" />
+<img src="img/vistas-mockup.png" alt="DesignUI" />
 </div>
 
 ---
