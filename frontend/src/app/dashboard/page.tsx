@@ -27,6 +27,7 @@ export default function Dashboard() {
   const [consejos, setConsejos] = useState("");
   const [selectedCount, setSelectedCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
   const [error, setError] = useState<string | null>(null);
 
   const datosPrueba: MonthPrediction[] = [
