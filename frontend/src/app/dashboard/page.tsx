@@ -112,9 +112,6 @@ export default function Dashboard() {
       {/* Main Content composed by Left Section and Right Section */}
       <div className="px-4 sm:px-6 md:px-10 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-
-            
-
           <div className="mt-4">
             <p className="text-lg sm:text-2xl text-[#838383] text-center sm:text-left">
               Buenos días{" "}
@@ -131,7 +128,6 @@ export default function Dashboard() {
             </p>
           </div>
 
->>>>>>> 514d2f6 (Adecuaciones finales, simulated profile)
           <Image
             src={fotoPerfil || "/profile.png"}
             alt="Foto de perfil"
