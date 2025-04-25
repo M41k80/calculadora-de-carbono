@@ -58,6 +58,14 @@ export default function AiSuggestionsChat() {
 
   return (
     <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] md:h-[60vh] lg:h-[107vh] bg-[#212226] rounded-lg overflow-hidden relative">
+      {/* Loader */}
+      {isLoading && (
+        <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10">
+          <p className="mb-4 text-white text-base sm:text-lg">Generando...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
+        </div>
+      )}
+
       {!showOriginalContent ? (
         <div className="flex flex-col items-center justify-center p-4">
           <h1 className="text-xl font-bold text-[#EA5105] mb-4">
@@ -112,16 +120,6 @@ export default function AiSuggestionsChat() {
               )}
             </button>
           </div>
-
-          {/* Loader */}
-          {isLoading && (
-            <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10 mt-10">
-              <p className="mb-4 text-white text-base sm:text-lg">
-                Generando...
-              </p>
-              <div className="animate-spin rounded-full h-32 w-32 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
-            </div>
-          )}
 
           {isExpanded && (
             <>
