@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import {
@@ -61,8 +61,18 @@ const datosPrueba: MonthPrediction[] = [
 ];
 
 const TODOS_LOS_MESES = [
-  "enero", "febrero", "marzo", "abril", "mayo", "junio",
-  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
 ];
 
 export default function Calendar() {
@@ -74,16 +84,17 @@ export default function Calendar() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleToggleMonth = (month: string) => {
-    setSelectedMonths(prev =>
-      prev.includes(month)
-        ? prev.filter(m => m !== month)
-        : [...prev, month]
+    setSelectedMonths((prev) =>
+      prev.includes(month) ? prev.filter((m) => m !== month) : [...prev, month]
     );
   };
 
   const handleScroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
+    scrollRef.current.scrollBy({
+      left: dir === "left" ? -200 : 200,
+      behavior: "smooth",
+    });
   };
 
   const handleGenerate = async () => {
@@ -101,29 +112,32 @@ export default function Calendar() {
       // En producción, reemplazar con llamada real:
       // const response = await fetch('tu-endpoint-api', { ... });
       // const data = await response.json();
-      
+
       // Simulamos un retraso de red
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       // Filtramos solo los meses seleccionados para la demo
-      const filteredData = datosPrueba.filter(item => 
+      const filteredData = datosPrueba.filter((item) =>
         selectedMonths.includes(item.mes)
       );
-      
+
       // Si no hay datos para los meses seleccionados, usamos datos genéricos
-      const resultData = filteredData.length > 0 
-        ? filteredData 
-        : selectedMonths.map(month => ({
-            mes: month,
-            anio: 2025,
-            electricidad_uso: 10000 + Math.random() * 3000,
-            auto_uso: 2000 + Math.random() * 2000,
-            avion_uso: 10 + Math.floor(Math.random() * 15),
-            residuos_uso: 4000 + Math.random() * 1000,
-            agua_uso: 8000 + Math.random() * 4000,
-            emisiones_estimadas: 4000 + Math.random() * 2000,
-            clasificacion: ["baja", "medio", "alta"][Math.floor(Math.random() * 3)],
-          }));
+      const resultData =
+        filteredData.length > 0
+          ? filteredData
+          : selectedMonths.map((month) => ({
+              mes: month,
+              anio: 2025,
+              electricidad_uso: 10000 + Math.random() * 3000,
+              auto_uso: 2000 + Math.random() * 2000,
+              avion_uso: 10 + Math.floor(Math.random() * 15),
+              residuos_uso: 4000 + Math.random() * 1000,
+              agua_uso: 8000 + Math.random() * 4000,
+              emisiones_estimadas: 4000 + Math.random() * 2000,
+              clasificacion: ["baja", "medio", "alta"][
+                Math.floor(Math.random() * 3)
+              ],
+            }));
 
       setPredicciones(resultData);
       setShowCard(true);
@@ -135,51 +149,94 @@ export default function Calendar() {
     }
   };
 
-  const chartData = predicciones.map(p => ({
+  const chartData = predicciones.map((p) => ({
     name: p.mes.charAt(0).toUpperCase() + p.mes.slice(1),
     co2: Number(p.emisiones_estimadas.toFixed(2)),
   }));
 
+  const [fotoPerfil, setFotoPerfil] = useState<string | null>(null);
+
+  useEffect(() => {
+    const foto = localStorage.getItem("foto");
+    if (foto) {
+      setFotoPerfil(foto);
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen flex bg-[#0B0C0D]">
+    <div className="min-h-screen bg-[#0B0C0D] flex px-4">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col px-4 sm:px-8 py-6 text-white">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl sm:text-4xl font-semibold">Impacto Ambiental</h1>
+      <div className="flex flex-col w-full px-6 pt-6 text-white relative ml-8">
+        {/* Perfil parte superior derecha */}
+        <div className="flex justify-end pr-2 sm:pr-4 mb-4">
           <Image
-            src="/profile.png"
-            alt="Perfil"
+            src={fotoPerfil || "/profile.png"}
+            alt="Foto de perfil"
             width={40}
             height={40}
-            className="rounded-full border border-white/20"
+            className="rounded-full border border-white/20 object-cover"
           />
         </div>
 
+        <h1 className="text-2xl sm:text-4xl font-semibold mb-4">
+          Selecciona meses a predecir:
+        </h1>
+        <p className="text-sm sm:text-base text-[#D1D1D1] mb-6 font-light max-w-xs md:max-w-4xl pb-4">
+          Elegí un rango de fechas para que la inteligencia artificial analice
+          tus datos y genere una predicción sobre el impacto ambiental de tu
+          empresa durante ese período.
+        </p>
+
         {/* Slider de meses */}
-        <div className="mb-6">
-          <h2 className="text-lg font-medium mb-2">Selecciona meses a predecir</h2>
+        <div className="flex items-center gap-2 mb-6 pb-4 max-w-xs md:max-w-5xl">
           <div className="flex items-center">
-            <button onClick={() => handleScroll("left")} className="px-2">‹</button>
+            {/* Botón izquierda */}
+            <button
+              onClick={() => handleScroll("left")}
+              className="md:w-3 md:h-3 w-20 h-20 flex items-center justify-center cursor-pointer mr-5 ml-3"
+            >
+              <Image
+                src="/flecha.png"
+                alt="Anterior"
+                width={10}
+                height={10}
+                className="object-contain"
+              />
+            </button>
             <div
               ref={scrollRef}
-              className="flex overflow-x-auto gap-2 snap-x scrollbar-thin scrollbar-thumb-gray-600"
+              className="flex overflow-x-hidden gap-3 max-w-[850px] scroll-smooth"
             >
-              {TODOS_LOS_MESES.map(mes => (
+              {TODOS_LOS_MESES.map((mes) => (
                 <button
                   key={mes}
                   onClick={() => handleToggleMonth(mes)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-xl whitespace-nowrap 
-                    ${selectedMonths.includes(mes)
-                      ? "bg-[#EA5105] text-white"
-                      : "bg-[#2E2E2E] text-white hover:bg-[#3B3B3B]"
+                  className={`min-w-[100px] h-[42px] cursor-pointer px-4 py-1 rounded-xl text-sm font-medium whitespace-nowrap transition 
+                    ${
+                      selectedMonths.includes(mes)
+                        ? "bg-[#EA5105] text-white"
+                        : "bg-[#2E2E2E] text-white hover:bg-[#3B3B3B]"
                     }`}
                 >
                   {mes.charAt(0).toUpperCase() + mes.slice(1)}
                 </button>
               ))}
             </div>
-            <button onClick={() => handleScroll("right")} className="px-2">›</button>
+
+            {/* Botón derecha */}
+            <button
+              onClick={() => handleScroll("right")}
+              className="md:w-3 md:h-3 w-20 h-20 flex items-center justify-center cursor-pointer mx-5"
+            >
+              <Image
+                src="/flecha.png"
+                alt="Siguiente"
+                width={10}
+                height={10}
+                className="object-contain rotate-180"
+              />
+            </button>
           </div>
         </div>
 
@@ -188,9 +245,9 @@ export default function Calendar() {
           <button
             onClick={handleGenerate}
             disabled={isLoading}
-            className="px-6 py-2 bg-[#EA5105] hover:bg-orange-600 rounded-full font-semibold disabled:opacity-50"
+            className="bg-[#EA5105] hover:bg-orange-600 text-white font-semibold px-10 py-2 rounded-xl cursor-pointer w-fit"
           >
-            {isLoading ? "Generando..." : "Generar Predicción"}
+            {isLoading ? "Generando..." : "Generar predicción"}
           </button>
         </div>
 
@@ -199,9 +256,11 @@ export default function Calendar() {
 
         {/* Spinner */}
         {isLoading && (
-          <div className="flex flex-col items-center mt-6">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600" />
-            <p className="mt-2">Procesando...</p>
+          <div className="flex flex-col justify-center items-center mt-10">
+            <p className="mb-4 text-white text-base sm:text-lg">
+              Generando predicción...
+            </p>
+            <div className="animate-spin rounded-full h-12 w-12 md:h-32 md:w-32  md:border-[12px] border-[6px] border-[#7A2E09] border-t-[#EA5105]" />
           </div>
         )}
 
@@ -209,7 +268,7 @@ export default function Calendar() {
         {showCard && (
           <div className="space-y-6">
             {/* Gráfico */}
-            <div className="bg-[#1C1D1F] p-4 rounded-xl shadow">
+            <div className="mt-10 bg-[#1C1D1F] rounded-xl shadow-lg p-6 max-w-sm md:max-w-4xl mb-4">
               <h3 className="text-xl font-semibold mb-2">Predicciones CO₂</h3>
               <div className="w-full h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -232,14 +291,18 @@ export default function Calendar() {
             </div>
 
             {/* Consejos */}
-            <div className="bg-[#1C1D1F] p-4 rounded-xl shadow text-gray-300">
-              <h3 className="text-lg font-semibold text-white mb-2">Consejos</h3>
+            <div className="bg-[#1C1D1F] p-4 rounded-xl shadow text-gray-300 max-w-xs md:max-w-4xl mb-6">
+              <h3 className="text-lg font-semibold text-white mb-2">
+                Consejos
+              </h3>
               <ul className="space-y-2">
                 <li>• Reduce el consumo de electricidad en horas pico</li>
                 <li>• Considera usar transporte público o compartido</li>
                 <li>• Optimiza tus viajes en avión combinando trayectos</li>
                 <li>• Implementa un sistema de reciclaje adecuado</li>
-                <li>• Controla el consumo de agua con dispositivos ahorradores</li>
+                <li>
+                  • Controla el consumo de agua con dispositivos ahorradores
+                </li>
               </ul>
             </div>
           </div>

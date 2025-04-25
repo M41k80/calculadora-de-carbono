@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Sidebar from "@/components/Sidebar";
 import Cardslider from "@/components/Cardslider";
@@ -95,31 +95,56 @@ export default function Dashboard() {
     }
   };
 
+  const [fotoPerfil, setFotoPerfil] = useState<string | null>(null);
+
+  useEffect(() => {
+    const foto = localStorage.getItem("foto");
+    if (foto) {
+      setFotoPerfil(foto);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0B0C0D] flex flex-col lg:flex-row px-4">
       {/* Sidebar */}
       <Sidebar />
-      
+
       {/* Main Content composed by Left Section and Right Section */}
       <div className="px-4 sm:px-6 md:px-10 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-          <h1 className="text-2xl font-bold text-white text-center sm:text-left">
-            Buenos días CAPSULE CORP          
-            </h1>
+
             
+
+          <div className="mt-4">
+            <p className="text-lg sm:text-2xl text-[#838383] text-center sm:text-left">
+              Buenos días{" "}
+              <span className="text-white font-semibold text-2xl">
+                Magdiel Mora
+              </span>
+            </p>
+            <p className="text-lg sm:text-2xl text-[#838383] text-center sm:text-left">
+              Listo para{" "}
+              <span className="text-white font-semibold text-2xl">
+                transformar tu impacto
+              </span>{" "}
+              🌱
+            </p>
+          </div>
+
+>>>>>>> 514d2f6 (Adecuaciones finales, simulated profile)
           <Image
-            src="/profile.png"
-            alt="Perfil"
+            src={fotoPerfil || "/profile.png"}
+            alt="Foto de perfil"
             width={40}
             height={40}
-            className="rounded-full border border-white/20"
+            className="rounded-full border border-white/20 object-cover"
           />
         </div>
         <div className="flex gap-5">
           {/* Left Section */}
           <div>
-            <div className="mb-8 flex flex-col items-center gap-4">
-              <h2 className="text-white font-medium text-center sm:text-left">
+            <div className="mb-8 flex flex-col items-center gap-4 mt-2">
+              <h2 className="text-white font-medium text-center sm:text-left text-xl">
                 Genera una predicción
               </h2>
               <Cardslider
@@ -142,12 +167,12 @@ export default function Dashboard() {
               {predicciones.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {predicciones.map((p, i) => (
-                    <div key={i} className="bg-gray-900 p-4 rounded-xl">
+                    <div key={i} className="bg-[#212226] p-4 rounded-xl">
                       <h4 className="text-lg font-bold">
                         {p.mes.charAt(0).toUpperCase() + p.mes.slice(1)}{" "}
                         {p.anio}
                       </h4>
-                      <p className="mt-1 text-gray-300">
+                      <p className="mt-1 text-white">
                         Emisiones estimadas: {p.emisiones_estimadas.toFixed(2)}{" "}
                         kg CO₂
                       </p>
@@ -163,8 +188,10 @@ export default function Dashboard() {
                 </p>
               )}
               {consejos && (
-                <div className="mt-6 bg-gray-800 p-4 rounded-lg text-gray-300 whitespace-pre-line overflow-auto h-[40vh]">
-                  <h4 className="text-white font-semibold mb-2">Consejos:</h4>
+                <div className="mt-6 bg-[#212226] p-4 rounded-lg text-white whitespace-pre-line overflow-auto h-[40vh]">
+                  <h4 className="text-[#EA5105] font-semibold mb-2">
+                    Consejos:
+                  </h4>
                   {consejos}
                 </div>
               )}

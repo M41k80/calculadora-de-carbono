@@ -104,7 +104,7 @@ export default function AiSuggestionsChat() {
           <p className="text-sm sm:text-xs text-white text-center mb-2"></p>
           <button
             onClick={() => setShowOriginalContent(true)}
-            className="bg-[#EA5105] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md"
+            className="bg-[#EA5105] hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-xl cursor-pointer"
           >
             Quiero más recomendaciones
           </button>
@@ -112,7 +112,7 @@ export default function AiSuggestionsChat() {
       ) : (
         <>
         {/* Chat UI */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-800">
+          <div className="flex items-center justify-between p-4 border-b border-[#838383]">
             <div className="flex items-center gap-2">
               <Lightbulb className="h-5 w-5 text-[#EA5105]" />
               <h2 className="font-bold text-white">
@@ -121,7 +121,7 @@ export default function AiSuggestionsChat() {
             </div>
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="h-8 w-8 text-gray-400 hover:text-white hover:bg-gray-800 rounded-md flex items-center justify-center"
+              className="h-8 w-8 text-gray-400 hover:text-white hover:bg-[#838383] rounded-md flex items-center justify-center cursor-pointer"
             >
               {isExpanded ? (
                 <X className="h-4 w-4" />
@@ -139,8 +139,8 @@ export default function AiSuggestionsChat() {
                     <div
                       key={index}
                       className={`max-w-[85%] rounded-lg p-3 ${message.role === "user"
-                        ? "bg-gray-700 text-white self-end"
-                        : "bg-gray-800 text-white self-start border-l-2 border-[#EA5105]"
+                        ? "bg-[#838383] text-white self-end"
+                        : "bg-[#0B0C0D] text-white self-start border-l-2 border-[#EA5105]"
                         }`}
                     >
                       {message.content}
@@ -156,12 +156,12 @@ export default function AiSuggestionsChat() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Solicita recomendaciones..."
-                    className="min-h-[60px] w-full bg-gray-800 border border-gray-700 text-white rounded-md p-2 resize-none focus:outline-none focus:ring-1 focus:ring-[#EA5105]"
+                    className="min-h-[60px] w-full bg-[#0B0C0D] border border-gray-700 text-white rounded-md p-2 resize-none focus:outline-none focus:ring-1 focus:ring-[#EA5105]"
                   />
                   <button
                     type="submit"
                     disabled={isLoading || !input.trim()}
-                    className="h-[60px] w-[60px] bg-[#EA5105] hover:bg-green-700 text-white rounded-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-[60px] w-[60px] bg-[#EA5105] hover:bg-orange-700 text-white rounded-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <Send className="h-5 w-5" />
                   </button>

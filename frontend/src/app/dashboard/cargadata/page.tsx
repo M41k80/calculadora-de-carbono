@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import SuccessModal from "@/components/modals/SuccessModal";
@@ -81,6 +81,15 @@ const CargaData = () => {
     }
   };
 
+    const [fotoPerfil, setFotoPerfil] = useState<string | null>(null);
+  
+    useEffect(() => {
+      const foto = localStorage.getItem("foto");
+      if (foto) {
+        setFotoPerfil(foto);
+      }
+    }, []);
+
   return (
     <div className="min-h-screen bg-[#0B0C0D] flex px-4">
       <Sidebar />
@@ -88,11 +97,11 @@ const CargaData = () => {
         {/* Imagen de perfil */}
         <div className="flex justify-end pr-2 sm:pr-4">
           <Image
-            src="/profile.png"
-            alt="Perfil"
-            className="rounded-full object-cover border border-white/20"
+            src={fotoPerfil || "/profile.png"}
+            alt="Foto de perfil"
             width={40}
             height={40}
+            className="rounded-full border border-white/20 object-cover"
           />
         </div>
 

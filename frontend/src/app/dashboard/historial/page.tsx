@@ -117,7 +117,7 @@ export default function Historial() {
     }
 
     return (
-        <div className="min-h-screen bg-black flex">
+        <div className="min-h-screen bg-black flex px-4">
             <Sidebar />
             <main className="flex-1 px-4 sm:px-6 md:px-8 py-10 overflow-auto">
                 <h1 className="text-3xl font-bold mb-8 text-orange-500">Historial de emisiones</h1>

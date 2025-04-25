@@ -87,7 +87,7 @@ export default function PrediccionForm() {
                         key={mes}
                         onClick={() => toggleMes(mes)}
                         className={`px-3 py-2 rounded-lg border text-sm capitalize transition-colors duration-200 ${mesesSeleccionados.includes(mes)
-                            ? "bg-green-500 text-white border-green-500"
+                            ? "bg-[#EA5105] text-white border-[#EA5105]"
                             : "bg-gray-800 text-white border-gray-700 hover:bg-gray-700"
                             }`}
                     >
@@ -98,7 +98,7 @@ export default function PrediccionForm() {
 
             <p className="mb-2 text-sm">
                 Meses seleccionados:{" "}
-                <span className="font-semibold text-green-400">
+                <span className="font-semibold text-[#EA5105]">
                     {mesesSeleccionados.join(", ") || "ninguno"}
                 </span>
             </p>
@@ -106,7 +106,7 @@ export default function PrediccionForm() {
             <button
                 onClick={handleSubmit}
                 disabled={mesesSeleccionados.length === 0}
-                className="mt-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded disabled:bg-gray-500"
+                className="mt-2 px-4 py-2 bg-[#EA5105] hover:bg-orange-700 text-white rounded disabled:bg-gray-500"
             >
                 Obtener predicción
             </button>
@@ -134,11 +134,9 @@ export default function PrediccionForm() {
             {consejos && (
                 <div className="mt-8 bg-gray-800 p-6 rounded-lg">
                     <h3 className="text-lg font-semibold mb-2">Consejos personalizados</h3>
-                    <pre className="whitespace-pre-wrap text-sm text-green-300">{consejos}</pre>
+                    <pre className="whitespace-pre-wrap text-sm text-[#EA5105]">{consejos}</pre>
                 </div>
             )}
         </div>
     );
 }
-
-// eQa2sS2lwh5VyXMP
