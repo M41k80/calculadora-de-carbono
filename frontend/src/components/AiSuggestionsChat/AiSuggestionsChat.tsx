@@ -59,7 +59,7 @@ export default function AiSuggestionsChat() {
   };
 
   return (
-    <div className="mt-4 mb-6 w-full max-w-xl mx-auto flex flex-col h-[70vh] md:h-[60vh] lg:h-[100vh] bg-[#212226] rounded-lg overflow-hidden relative">
+    <div className="mt-4 mb-6 w-full max-w-xl mx-auto flex flex-col h-[70vh] sm:h-[40vh] md:h-[60vh] lg:h-[100vh] bg-[#212226] rounded-lg overflow-hidden relative">
       {/* Loader */}
       {isLoading && (
         <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10">
@@ -84,7 +84,7 @@ export default function AiSuggestionsChat() {
             alt="Robot asistente"
             width={300}
             height={300}
-            className="w-full max-w-xs mx-auto mb-4"
+            className="w-full max-w-xs mx-auto mb-4 lg:w-1/2"
           />
 
           <ul className="list-disc text-sm text-white mb-2 list-inside pl-4">
@@ -155,7 +155,7 @@ export default function AiSuggestionsChat() {
                   <textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder="Escribe tu pregunta sobre huella de carbono..."
+                    placeholder="Solicita recomendaciones..."
                     className="min-h-[60px] w-full bg-gray-800 border border-gray-700 text-white rounded-md p-2 resize-none focus:outline-none focus:ring-1 focus:ring-[#EA5105]"
                   />
                   <button
