@@ -1,87 +1,57 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
+
+const TODOS_LOS_MESES = [
+  "enero", "febrero", "marzo", "abril", "mayo", "junio",
+  "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+];
 
 const Cardslider = () => {
+  const [mesesDisponibles, setMesesDisponibles] = useState<string[]>([]);
+  const [seleccionados, setSeleccionados] = useState<string[]>([]);
 
+  useEffect(() => {
+    const mesActual = new Date().getMonth(); // 0-enero, 1-febrero, ..., 11-diciembre
+    const mesesFuturos = TODOS_LOS_MESES.slice(mesActual + 1);
+    setMesesDisponibles(mesesFuturos);
+  }, []);
 
-
-
-
-
+  const toggleSeleccion = (mes: string) => {
+    setSeleccionados(prev =>
+      prev.includes(mes) ? prev.filter(m => m !== mes) : [...prev, mes]
+    );
+  };
 
   return (
-    <div>
-      <div className="mt-3 mb-3">
-        <Swiper
-          modules={[Pagination, Navigation]}
-          spaceBetween={20}
-          slidesPerView={5}
-          loop={true}
-          navigation={true}
-          className="w-200 custom-swiper"
-        >
-          <SwiperSlide>
-            <button onClick={() => console.log('Probando')} className="w-full hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Enero
-            </button>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Febrero
+    <div className="mt-3 mb-3">
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={20}
+        slidesPerView={5}
+        loop={false}
+        navigation={true}
+        className="w-200 custom-swiper"
+      >
+        {mesesDisponibles.map((mes, index) => (
+          <SwiperSlide key={index}>
+            <div
+              onClick={() => toggleSeleccion(mes)}
+              className={`p-4 rounded-lg shadow-md flex items-center justify-center cursor-pointer 
+                ${
+                  seleccionados.includes(mes)
+                    ? "bg-green-600 text-white"
+                    : "bg-[#212226] text-white"
+                }`}
+            >
+              {mes.charAt(0).toUpperCase() + mes.slice(1)}
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Marzo
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Abril
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Mayo
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Junio
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Julio
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Agosto
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Septiembre
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Octubre
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="hover:bg-[#EA5105] bg-[#212226] p-4 rounded-lg shadow-md text-white flex items-center justify-center">
-              Noviembre
-            </div>
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      
+        ))}
+      </Swiper>
     </div>
   );
 };
