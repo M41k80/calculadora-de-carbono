@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "@/styles/globals.css";
+import "keen-slider/keen-slider.min.css";
 
 const outfit = Outfit({
   variable: "--font-outfit",
