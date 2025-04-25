@@ -25,7 +25,10 @@ export async function POST(req: NextRequest) {
 
         const { error: detalleError } = await supabase
             .from("detalle_mensual")
-            .insert(detalleWithUser);
+            .upsert(detalleWithUser, { onConflict: "email,anio,mes" });
+
+
+
 
         if (detalleError) throw detalleError;
 
