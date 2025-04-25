@@ -57,7 +57,7 @@ export default function AiSuggestionsChat() {
   };
 
   return (
-    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] md:h-[60vh] lg:h-[107vh] bg-[#212226] rounded-lg overflow-hidden">
+    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] md:h-[60vh] lg:h-[107vh] bg-[#212226] rounded-lg overflow-hidden relative">
       {!showOriginalContent ? (
         <div className="flex flex-col items-center justify-center p-4">
           <h1 className="text-xl font-bold text-[#EA5105] mb-4">
@@ -69,20 +69,22 @@ export default function AiSuggestionsChat() {
             sugerencias personalizadas para seguir reduciendo tu impacto
             ambiental.
           </p>
-          <img src='/RobotChatBot.svg'></img>
+          <img src="/RobotChatBot.svg"></img>
           <ul className="list-disc text-sm text-white mb-2 list-inside pl-4">
             <li>Recibí consejos más específicos según cada categoría.</li>
             <li>Descubrí acciones simples que podés aplicar ya mismo.</li>
             <li>Mejorá tus indicadores sin cambiar toda tu operación.</li>
             <li>Accedé a ideas que quizás no habías considerado!</li>
             <li>Tomá decisiones más inteligentes, con datos reales!</li>
-            <li>Evitá errores comunes con recomendaciones claras y aplicables.</li>
-            <li>Aprovechá todo el potencial de tus datos para tomar mejores
-            decisiones.</li>
-         </ul>
-          <p className="text-sm sm:text-xs text-white text-center mb-2">
-            
-          </p>
+            <li>
+              Evitá errores comunes con recomendaciones claras y aplicables.
+            </li>
+            <li>
+              Aprovechá todo el potencial de tus datos para tomar mejores
+              decisiones.
+            </li>
+          </ul>
+          <p className="text-sm sm:text-xs text-white text-center mb-2"></p>
           <button
             onClick={() => setShowOriginalContent(true)}
             className="bg-[#EA5105] hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md"
@@ -110,6 +112,16 @@ export default function AiSuggestionsChat() {
               )}
             </button>
           </div>
+
+          {/* Loader */}
+          {isLoading && (
+            <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10 mt-10">
+              <p className="mb-4 text-white text-base sm:text-lg">
+                Generando...
+              </p>
+              <div className="animate-spin rounded-full h-32 w-32 border-[12px] border-[#7A2E09] border-t-[#EA5105]" />
+            </div>
+          )}
 
           {isExpanded && (
             <>
