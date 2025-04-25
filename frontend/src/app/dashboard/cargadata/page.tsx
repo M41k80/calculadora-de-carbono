@@ -46,7 +46,7 @@ const CargaData = () => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://carboniq.vercel.app/historial/save",
+        "https://carboniq.vercel.app/historial/save",
         {
           method: "POST",
           headers: {
