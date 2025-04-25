@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import axios from "axios";
 
+
 type LoginModalProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -31,7 +32,16 @@ const LoginModal = ({ isOpen, onClose, onOpenRegister }: LoginModalProps) => {
       );
 
       const { token } = response.data;
+
+      
+      
+      
+  
+    
       localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
+      
+  
       onClose();
       router.push("/dashboard");
     } catch (error: unknown) {

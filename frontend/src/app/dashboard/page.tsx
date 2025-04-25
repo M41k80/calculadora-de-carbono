@@ -5,6 +5,8 @@ import Image from "next/image";
 import Cardslider from "@/components/Cardslider";
 import ScrollContainer from "@/components/Scrollcontainer";
 import AiSuggestionsChat from "@/components/AiSuggestionsChat/AiSuggestionsChat";
+import { getFutureMonths } from "@/utils/getFutureMonths";
+
 
 const Dashboard = () => {
   return (

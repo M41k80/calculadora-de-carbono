@@ -5,7 +5,7 @@ const API_URL = "https://calculadora-carbono-7ero.onrender.com";
 
 // const API_URL = "http://localhost:8000";
 
-// Interfaces para la respuesta de predicción anual
+
 export interface PromediosMensuales {
     electricidad: number;
     auto: number;
@@ -37,6 +37,12 @@ export interface PredictionAnualResponse {
     detalle_mensual: DetalleMensual[];
     resumen_anual: ResumenAnual[];
 }
+
+export interface HistorialAnual {
+    detalle_mensual: DetalleMensual[];
+    resumen_anual: ResumenAnual[];
+}
+
 
 
 export const getAnnualPrediction = async (csvFile: FormData): Promise<PredictionAnualResponse> => {
