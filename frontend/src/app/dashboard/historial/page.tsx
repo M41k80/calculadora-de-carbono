@@ -59,7 +59,7 @@ export default function Historial() {
                 const token = localStorage.getItem('token')
                 const email = localStorage.getItem('email')
                 if (!token || !email) throw new Error('Token o email faltante')
-                const response = await fetch(`http://localhost:3000/historial/save?email=${email}`, {
+                const response = await fetch(`https://carboniq.vercel.app/historial/save?email=${email}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 })
                 if (!response.ok) throw new Error(`Error ${response.status}`)
