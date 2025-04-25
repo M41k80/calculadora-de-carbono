@@ -57,7 +57,7 @@ export default function AiSuggestionsChat() {
   };
 
   return (
-    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] sm:h-[40vh] md:h-[60vh] lg:h-[110vh] bg-[#212226] rounded-lg overflow-hidden relative">
+    <div className="mt-4 mb-6 w-full flex flex-col h-[70vh] sm:h-[40vh] md:h-[60vh] lg:h-[100vh] bg-[#212226] rounded-lg overflow-hidden relative">
       {/* Loader */}
       {isLoading && (
         <div className="flex flex-col justify-center items-center absolute inset-0 bg-[#212226] z-10">
@@ -129,11 +129,10 @@ export default function AiSuggestionsChat() {
                   {messages.map((message, index) => (
                     <div
                       key={index}
-                      className={`max-w-[85%] rounded-lg p-3 ${
-                        message.role === "user"
+                      className={`max-w-[85%] rounded-lg p-3 ${message.role === "user"
                           ? "bg-gray-700 text-white self-end"
                           : "bg-gray-800 text-white self-start border-l-2 border-[#EA5105]"
-                      }`}
+                        }`}
                     >
                       {message.content}
                     </div>
