@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,13 +11,46 @@ const Profile = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const [nombre, setNombre] = useState("Magdiel Mora");
+  const [empresa, setEmpresa] = useState("CAPSULE CORP");
+  const [contrasenaActual, setContrasenaActual] = useState("lukas1234");
+  const [contrasenaNueva, setContrasenaNueva] = useState("");
+  const [confirmarContrasena, setConfirmarContrasena] = useState("");
+  const [passwordLength, setPasswordLength] = useState(contrasenaActual.length);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Cargando desde localStorage al iniciar
+  useEffect(() => {
+    const storedNombre = localStorage.getItem("nombre");
+    const storedEmpresa = localStorage.getItem("empresa");
+    const storedFoto = localStorage.getItem("foto");
+
+    if (storedNombre) setNombre(storedNombre);
+    if (storedEmpresa) setEmpresa(storedEmpresa);
+    if (storedFoto) setSelectedImage(storedFoto);
+  }, []);
 
   const handleGuardarCambios = () => {
     setIsLoading(true);
     setShowProfile(false);
 
     setTimeout(() => {
+      // Simulación que la contraseña ha sido actualizada
+      if (contrasenaNueva && contrasenaNueva === confirmarContrasena) {
+        setContrasenaActual(contrasenaNueva);
+        setPasswordLength(contrasenaNueva.length);
+        setContrasenaNueva("");
+        setConfirmarContrasena("");
+      }
+
+      // Guardando nombre, empresa y foto en localStorage
+      localStorage.setItem("nombre", nombre);
+      localStorage.setItem("empresa", empresa);
+      if (selectedImage) {
+        localStorage.setItem("foto", selectedImage);
+      }
+
       setIsLoading(false);
       setShowProfile(true);
     }, 3000);
@@ -36,7 +69,8 @@ const Profile = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setSelectedImage(reader.result as string);
+        const result = reader.result as string;
+        setSelectedImage(result);
       };
       reader.readAsDataURL(file);
     }
@@ -97,6 +131,8 @@ const Profile = () => {
                   </label>
                   <input
                     type="text"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
                     className="w-full px-4 py-1 rounded-md bg-[#1C1D1F] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
                   />
                 </div>
@@ -107,7 +143,9 @@ const Profile = () => {
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
+                    value="m41k80@icloud.com"
+                    disabled
+                    className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-gray-400 cursor-not-allowed"
                   />
                 </div>
 
@@ -117,6 +155,8 @@ const Profile = () => {
                   </label>
                   <input
                     type="text"
+                    value={empresa}
+                    onChange={(e) => setEmpresa(e.target.value)}
                     className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
                   />
                 </div>
@@ -131,16 +171,21 @@ const Profile = () => {
                 <div className="grid grid-cols-1 gap-4">
                   <input
                     type="password"
-                    placeholder="Contraseña actual"
-                    className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
+                    value={"•".repeat(passwordLength)}
+                    readOnly
+                    className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white"
                   />
                   <input
                     type="password"
+                    value={contrasenaNueva}
+                    onChange={(e) => setContrasenaNueva(e.target.value)}
                     placeholder="Nueva contraseña"
                     className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
                   />
                   <input
                     type="password"
+                    value={confirmarContrasena}
+                    onChange={(e) => setConfirmarContrasena(e.target.value)}
                     placeholder="Confirmar nueva contraseña"
                     className="w-full px-4 py-1 rounded-md bg-[#18191B] border-2 border-[#4C4C4C] outline-none text-white focus:border-[#EA5105] transition"
                   />
