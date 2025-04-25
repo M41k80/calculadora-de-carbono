@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect, FormEvent } from "react";
 import { Send, ChevronDown, Lightbulb, X } from "lucide-react";
 import { sendChatMessage } from "@/api/prediccion/predictionChatbot";
+import Image from "next/image";
+
 
 interface Message {
   role: "user" | "assistant";
@@ -57,7 +59,8 @@ export default function AiSuggestionsChat() {
   };
 
   return (
-    <div className="mt-4 mb-6 w-500 flex flex-col h-[70vh] md:h-[60vh] lg:h-[107vh] bg-[#212226] rounded-lg overflow-hidden">
+    <div className="mt-4 mb-6 w-full max-w-xl mx-auto flex flex-col h-[70vh] md:h-[60vh] lg:h-[80vh] bg-[#212226] rounded-lg overflow-hidden">
+
       {!showOriginalContent ? (
         <div className="flex flex-col items-center justify-center p-4">
           <h1 className="text-xl font-bold text-[#EA5105] mb-4">
@@ -69,7 +72,14 @@ export default function AiSuggestionsChat() {
             sugerencias personalizadas para seguir reduciendo tu impacto
             ambiental.
           </p>
-          <img src='/RobotChatBot.svg'></img>
+          <Image
+            src="/RobotChatBot.svg"
+            alt="Robot asistente"
+            width={300}
+            height={300}
+            className="w-full max-w-xs mx-auto mb-4"
+          />
+
           <ul className="list-disc text-sm text-white mb-2 list-inside pl-4">
             <li>Recibí consejos más específicos según cada categoría.</li>
             <li>Descubrí acciones simples que podés aplicar ya mismo.</li>
@@ -119,8 +129,8 @@ export default function AiSuggestionsChat() {
                     <div
                       key={index}
                       className={`max-w-[85%] rounded-lg p-3 ${message.role === "user"
-                          ? "bg-gray-700 text-white self-end"
-                          : "bg-gray-800 text-white self-start border-l-2 border-[#EA5105]"
+                        ? "bg-gray-700 text-white self-end"
+                        : "bg-gray-800 text-white self-start border-l-2 border-[#EA5105]"
                         }`}
                     >
                       {message.content}
