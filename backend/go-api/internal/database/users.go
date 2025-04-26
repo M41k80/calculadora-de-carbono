@@ -38,6 +38,19 @@ func (m *UserModel) Insert(user *User) error {
 	return nil
 }
 
+func (m *UserModel) Update(user *User) error {
+	query := `
+		UPDATE people
+		SET email = ?, password_hash = ?, full_name = ?, company_name = ?
+		WHERE id = ?`
+
+	_ , err := m.DB.Exec(query, user.Email, user.Password, user.Name, user.CompanyName , user.Id)
+	if err != nil {
+		return err
+	}
+	return nil 
+}
+
 func (m *UserModel) getUser(query string, args ...interface{}) (*User, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
@@ -46,9 +59,9 @@ func (m *UserModel) getUser(query string, args ...interface{}) (*User, error) {
 	err := m.DB.QueryRowContext(ctx, query, args...).Scan(&user.Id, &user.Email, &user.Name, &user.Password, &user.CompanyName)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, nil 
+			return nil, nil
 		}
-		return nil, err 
+		return nil, err
 	}
 
 	return &user, nil

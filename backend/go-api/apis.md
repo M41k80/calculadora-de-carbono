@@ -58,6 +58,18 @@ Include the token in subsequent requests as an Authorization header:
 Authorization: Bearer <jwt-token>
 ```
 
+### Update User 
+
+```
+curl -X PUT http://localhost:4000/api/v1/user/edit     -H "Authorization: Bearer <Tockend>"     -H "Content-Type: application/json"     -d '{
+        "email": "caleb@example.com",
+        "password": "password12345",
+        "name": "Caleb Sena",
+        "companyname": "Example"
+    }'
+
+```
+
 ---
 
 ### Carbon Calculator

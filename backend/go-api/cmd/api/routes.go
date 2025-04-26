@@ -29,6 +29,7 @@ func (app *application) routes() http.Handler {
 	authGroup := v1.Group("/")
 	authGroup.Use(app.AuthMiddleware())
 	{
+		authGroup.PUT("/user/edit", app.EditUser)
 		authGroup.POST("/carbon/upload", app.UploadCSV)
 		authGroup.GET("/carbon/history", app.GetHistory)
 	}
